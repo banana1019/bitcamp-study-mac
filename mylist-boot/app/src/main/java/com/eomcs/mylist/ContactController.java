@@ -8,12 +8,12 @@ import org.springframework.web.bind.annotation.RestController;
 // 이 표시(애노테이션)가 붙어있어야만 스프링 부트가 인식한다.
 public class ContactController {
 
-  String[] contacts = new String[5];
+  Contact[] contacts = new Contact[5];
   int size = 0;
 
   @RequestMapping("/contact/list")
   public Object list() {
-    String[] arr = new String[size]; // 배열에 저장된 값만 복사할 새 배열을 만든다.
+    Contact[] arr = new Contact[size]; // 배열에 저장된 값만 복사할 새 배열을 만든다.
     for (int i = 0; i < size; i++) {
       arr[i] = contacts[i]; // 전에 배열에서 값이 들어 있는 항목만 복사한다.
     }
