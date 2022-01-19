@@ -1,5 +1,11 @@
 package com.eomcs.mylist.controller;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.eomcs.mylist.domain.Todo;
@@ -13,8 +19,27 @@ public class TodoController {
   // Todo 객체 목록을 저장할 메모리를 준비한다.
   ArrayList todoList = new ArrayList();
 
-  public TodoController() {
+  public TodoController() throws Exception {
     System.out.println("TodoController() 호출됨!");
+
+    try {
+      ObjectInputStream in = new ObjectInputStream(new BufferedInputStream(new FileInputStream("todos.ser2")));
+
+      //    while (true) {
+      //      try {
+      //        Todo todo = (Todo) in.readObject();
+      //        todoList.add(todo);
+      //      } catch (Exception e) {
+      //        break;
+      //      }
+      //    }
+
+      todoList = (ArrayList) in.readObject();
+
+      in.close();
+    } catch (Exception e) {
+      System.out.println("todo 데이터를 로딩하는 중에 오류 발생!");
+    }
   }
 
   @RequestMapping("/todo/list") // 클라이언트 요청을 다루는 역할
@@ -62,5 +87,19 @@ public class TodoController {
 
     todoList.remove(index);  // 메서드 이름으로 코드의 의미를 짐작할 수 있다. 이것이 메서드로 분리하는 이유이다.
     return 1;
+  }
+
+  @RequestMapping("/todo/save")
+  public Object save() throws Exception {
+    ObjectOutputStream out = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream("todos.ser2")));
+
+    //    Object[] arr = todoList.toArray();
+    //    for (Object obj : arr) {
+    //      out.writeObject(obj);
+    //    }
+
+    out.writeObject(todoList);
+    out.close();
+    return todoList.size();
   }
 }

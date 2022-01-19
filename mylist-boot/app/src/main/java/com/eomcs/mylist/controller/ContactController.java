@@ -1,5 +1,11 @@
 package com.eomcs.mylist.controller;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.eomcs.mylist.domain.Contact;
@@ -13,9 +19,30 @@ public class ContactController {
   // => int size = 0;
   ArrayList contactList;
 
-  public ContactController() {
+  public ContactController() throws Exception {
     contactList = new ArrayList();
     System.out.println("ContactController() 호출됨!");
+
+    try {
+      ObjectInputStream in = new ObjectInputStream(new BufferedInputStream(new FileInputStream("contacts.ser2")));
+
+      //    while (true) {
+      //      try {
+      //        Contact contact = (Contact) in.readObject();
+      //
+      //        contactList.add(contact);
+      //      } catch (Exception e) {
+      //        break;
+      //      }
+      //    } 
+
+      contactList = (ArrayList) in.readObject();
+
+      in.close();
+    } catch (Exception e) {
+      System.out.println("연락처 데이터를 로딩하는 중에 오류 발생!");
+    }
+
   }
 
   @RequestMapping("/contact/list")
@@ -59,6 +86,20 @@ public class ContactController {
 
     contactList.remove(index);
     return 1;
+  }
+
+  @RequestMapping("/contact/save")
+  public Object save() throws Exception {
+    ObjectOutputStream out = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream("contacts.ser2")));
+
+    //    Object[] arr = contactList.toArray();
+    //    for (Object obj : arr) {
+    //      out.writeObject(obj);
+    //    }
+
+    out.writeObject(contactList);
+    out.close();
+    return contactList.size();
   }
 
   int indexOf(String email) {

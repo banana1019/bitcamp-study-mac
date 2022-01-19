@@ -1,5 +1,11 @@
 package com.eomcs.mylist.controller;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.eomcs.mylist.domain.Book;
@@ -8,11 +14,30 @@ import com.eomcs.util.ArrayList;
 @RestController 
 public class BookController {
 
-  // Book 객체 목록을 저장할 메모리를 준비한다.
   ArrayList bookList = new ArrayList();
 
-  public BookController() {
+  public BookController() throws Exception {
     System.out.println("BookController() 호출됨!");
+
+    try {      
+      ObjectInputStream in = new ObjectInputStream(new BufferedInputStream(new FileInputStream("books.ser2"))); // 주 객체에 데코레이터 객체를 연결
+
+      //    while (true) {
+      //      try {
+      //        Book book = (Book) in.readObject();
+      //
+      //        bookList.add(book);
+      //      } catch (Exception e) {
+      //        break;
+      //      }
+      //    }
+
+      bookList = (ArrayList) in.readObject();
+
+      in.close();
+    } catch (Exception e) {
+      System.out.println("독서록 데이터를 로딩하는 중 오류 발생!");
+    }
   }
 
   @RequestMapping("/book/list")
@@ -22,7 +47,6 @@ public class BookController {
 
   @RequestMapping("/book/add")
   public Object add(Book book) {
-    System.out.println(book);
     bookList.add(book);
     return bookList.size();
   }
@@ -33,8 +57,7 @@ public class BookController {
     if (index < 0 || index >= bookList.size()) {
       return "";
     }
-    Book book = (Book) bookList.get(index);
-    return book;
+    return bookList.get(index);
   }
 
   @RequestMapping("/book/update")
@@ -42,7 +65,6 @@ public class BookController {
     if (index < 0 || index >= bookList.size()) {
       return 0;
     }
-    Book old = (Book) bookList.get(index);
     return bookList.set(index, book) == null ? 0 : 1;
   }
 
@@ -53,4 +75,22 @@ public class BookController {
     }
     return bookList.remove(index) == null ? 0 : 1;
   }
+
+  @RequestMapping("/book/save")
+  public Object save() throws Exception {
+    ObjectOutputStream out = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream("books.ser2")));
+
+    //    Object[] arr = bookList.toArray();
+    //    for (Object obj : arr) {
+    //      out.writeObject(obj);
+    //    }
+
+    out.writeObject(bookList);
+    out.close();
+    return bookList.size();
+  }
 }
+
+
+
+

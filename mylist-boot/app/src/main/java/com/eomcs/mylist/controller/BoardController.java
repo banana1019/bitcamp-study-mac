@@ -1,5 +1,11 @@
 package com.eomcs.mylist.controller;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.sql.Date;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,8 +18,30 @@ public class BoardController {
   // Board 객체 목록을 저장할 메모리를 준비한다.
   ArrayList boardList = new ArrayList();
 
-  public BoardController() {
+  public BoardController() throws Exception {
     System.out.println("BoardController() 호출됨!");
+
+    try {
+      ObjectInputStream in = new ObjectInputStream(new BufferedInputStream(new FileInputStream("boards.ser2"))); // 데코레이터
+
+      // 1) 객체가 각각 따로 serialize 되었을 경우, 다음과 같이 객체 단위로 읽으면 되고,
+      //    while (true) {
+      //      try {        
+      //        Board board = (Board) in.readObject();
+      //
+      //        boardList.add(board);
+      //      } catch (Exception e) {
+      //        break;
+      //      }
+      //    }
+
+      // 2) 목록이 통째로 serialize 되었을 경우, 한 번에 목록을 읽으면 된다.
+      boardList = (ArrayList) in.readObject(); // 단, 기존에 생성한 ArrayList 객체는 버린다.
+
+      in.close();
+    } catch (Exception e) {
+      System.out.println("게시글 데이터 로딩 중 오류 발생!");
+    }
   }
 
   @RequestMapping("/board/list")
@@ -57,5 +85,22 @@ public class BoardController {
       return 0;
     }
     return boardList.remove(index) == null ? 0 : 1;
+  }
+
+  @RequestMapping("/board/save")
+  public Object save() throws Exception {
+    // 1) 바이트 스트림 객체 준비
+    ObjectOutputStream out = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream("boards.ser2")));
+
+    // 1) 다음과 같이 목록에 들어 있는 객체를 한 개씩 순차적으로 serialize 할 수도 있고,
+    //    Object[] arr = boardList.toArray();
+    //    for (Object obj : arr) {
+    //      out.writeObject(obj);
+    //    }
+
+    // 2) 다음과 같이 목록 자체를 serialize 할 수도 있다.
+    out.writeObject(boardList);
+    out.close(); // 데코레이터에서 close()하면 그 데코레이터와 연결된 모든 객체도 자동으로 close() 한다.
+    return boardList.size();
   }
 }
