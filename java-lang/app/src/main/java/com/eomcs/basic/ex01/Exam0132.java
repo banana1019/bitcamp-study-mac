@@ -34,9 +34,9 @@ public class Exam0132 {
     String s1 = new String("Hello");
     String s2 = new String("Hello");
 
-    System.out.println(s1 == s2);
+    System.out.println(s1 == s2); // false
 
-    System.out.println(s1.equals(s2));
+    System.out.println(s1.equals(s2)); // true
     // 위의 실행 결과를 보면 s1과 s2가 서로 다른 인스턴스인데도 불구하고
     // true를 리턴한다.
     // 이유?
