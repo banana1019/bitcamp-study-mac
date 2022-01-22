@@ -8,6 +8,7 @@ group = 'com.eomcs'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 
+// eclipse 프로젝트 이름을 설정하기
 eclipse {
     project {
         name = "project-app1"
