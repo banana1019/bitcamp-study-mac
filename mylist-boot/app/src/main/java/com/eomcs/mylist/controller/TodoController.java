@@ -23,23 +23,26 @@ public class TodoController {
     System.out.println("TodoController() 호출됨!");
 
     try {
-      BufferedReader in = new BufferedReader(new FileReader("contacts.json")); // 데코레이터
+      BufferedReader in = new BufferedReader(new FileReader("todos.json")); // 데코레이터
 
       // JSON 문자열을 다룰 객체 준비
       ObjectMapper mapper = new ObjectMapper();
 
       // 1) JSON 파일에서 문자열을 읽어 온다.
       // => 읽어 온 문자열은 배열 형식이다.
-      String jsonStr = in.readLine();
+      //      String jsonStr = in.readLine();
 
       // 2) JSON 문자열을 가지고 자바 객체를 생성한다.
       // => 배열 형식의 JSON 문자열에서 Board의 배열 객체를 생성한다.
-      Todo[] todos = mapper.readValue(jsonStr, Todo[].class);
+      //      Todo[] todos = mapper.readValue(jsonStr, Todo[].class);
 
       // 3) 배열 객체를 ArrayList에 저장한다.
-      for (Todo todo : todos) {
-        todoList.add(todo);
-      }
+      //      for (Todo todo : todos) {
+      //        todoList.add(todo);
+      //      }
+      //      todoList.addAll(todos);
+
+      todoList = new ArrayList(mapper.readValue(in.readLine(), Todo[].class));
 
       in.close();
     } catch (Exception e) {

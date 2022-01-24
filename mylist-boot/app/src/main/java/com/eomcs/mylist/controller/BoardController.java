@@ -36,9 +36,17 @@ public class BoardController {
       Board[] boards = mapper.readValue(jsonStr, Board[].class);
 
       // 3) 배열 객체를 ArrayList에 저장한다.
-      for (Board board : boards) {
-        boardList.add(board);
-      }
+      // => 다음과 같이 배열에서 한 개씩 꺼내 목록에 추가할 수 있다.
+      //      for (Board board : boards) {
+      //        boardList.add(board);
+      //      }
+
+
+      // => 다음과 같이 addAll()을 호출하여 배열을 목록에 추가할 수 있다.
+      //      boardList.addAll(boards);
+
+      // 다음과 같이 생성자를 통해 배열을 목록에 추가할 수 있다.
+      boardList = new ArrayList(boards);
 
       in.close();
     } catch (Exception e) {

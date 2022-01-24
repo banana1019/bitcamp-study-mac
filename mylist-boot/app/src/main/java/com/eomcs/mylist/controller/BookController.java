@@ -27,16 +27,19 @@ public class BookController {
 
       // 1) JSON 파일에서 문자열을 읽어 온다.
       // => 읽어 온 문자열은 배열 형식이다.
-      String jsonStr = in.readLine();
+      //      String jsonStr = in.readLine();
 
       // 2) JSON 문자열을 가지고 자바 객체를 생성한다.
       // => 배열 형식의 JSON 문자열에서 Board의 배열 객체를 생성한다.
-      Book[] books = mapper.readValue(jsonStr, Book[].class);
+      //      Book[] books = mapper.readValue(in.readLine(), Book[].class);
 
       // 3) 배열 객체를 ArrayList에 저장한다.
-      for (Book book : books) {
-        bookList.add(book);
-      }
+      //      for (Book book : books) {
+      //        bookList.add(book);
+      //      }
+      //      bookList.addAll(books);
+
+      bookList = new ArrayList(mapper.readValue(in.readLine(), Book[].class));
 
       in.close();
     } catch (Exception e) {
