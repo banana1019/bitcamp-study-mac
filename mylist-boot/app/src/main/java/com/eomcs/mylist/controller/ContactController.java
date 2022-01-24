@@ -43,7 +43,7 @@ public class ContactController {
       //      }
       //      contactList.addAll(contacts);
 
-      contactList = new ArrayList(mapper.readValue(jsonStr, Contact[].class));
+      contactList = new ArrayList(mapper.readValue(in.readLine(), Contact[].class));
 
       in.close();
     } catch (Exception e) {
