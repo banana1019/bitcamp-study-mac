@@ -11,8 +11,8 @@ public class ClientApp {
 
     Scanner keyScan = new Scanner(System.in);
 
-    System.out.print("서버 주소? ");
-    String serverAddress = keyScan.nextLine();
+    System.out.print("요청(예: 서버주소/연산자/값1/값2)? ");
+    String queryString = keyScan.nextLine();
 
     System.out.print("계산식? ");
     String input = keyScan.nextLine();
