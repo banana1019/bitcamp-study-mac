@@ -11,7 +11,7 @@ public class ServerApp {
     // 1) 클라이언트 App의 연결을 준비한다.
     ServerSocket serverSocket = new ServerSocket(8888);
 
-    while(true) {
+    while (true) {
       // 2) 클라이언트의 연결 요청을 승인한다.
       //  - 리턴 값은 클라이언트와 연결된 정보
       System.out.println("클라이언트의 연결을 기다림!");
