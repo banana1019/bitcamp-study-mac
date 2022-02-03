@@ -19,7 +19,7 @@ public class Worker extends Thread {
       Scanner in = new Scanner(socket.getInputStream());
       PrintStream out = new PrintStream(socket.getOutputStream());
 
-      // 1) HTTP 요청 데이터 읽기
+      // 1) HTTP 요청 데이터 읽기 (request-line)
       String requestLine = in.nextLine();
       System.out.println(requestLine);
 
