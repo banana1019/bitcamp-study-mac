@@ -12,19 +12,19 @@ public class CalculateController {
 
     switch (op) {
       case "+": 
-        response = String.format("jy: %.1f + %.1f = %.2f", a, b, (a + b));
+        response = String.format("%.2f", a + b);
         break;
       case "-": 
-        response = String.format("jy: %.1f + %.1f = %.2f", a, b, (a - b));
+        response = String.format("%.2f", a - b);
         break;
       case "*": 
-        response = String.format("jy: %.1f + %.1f = %.2f", a, b, (a * b));
+        response = String.format("%.2f", a * b);
         break;
       case "/": 
-        response = String.format("jy: %.1f + %.1f = %.2f", a, b, (a / b));
+        response = String.format("%.2f", a / b);
         break;
       default:
-        response = "jy: 지원하지 않는 연산자입니다.";
+        response = "연산 불가!";
     }
     return response;
   }
