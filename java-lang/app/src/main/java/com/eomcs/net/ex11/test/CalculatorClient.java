@@ -6,9 +6,19 @@ import java.util.Scanner;
 
 public class CalculatorClient {
   public static void main(String[] args) throws Exception {
-    try (Socket socket = new Socket("localhost", 8888);
+    try (
+        Socket socket = new Socket("localhost", 8888);
         PrintStream out = new PrintStream(socket.getOutputStream());
-        Scanner in = new Scanner(socket.getInputStream());) {
+        Scanner in = new Scanner(socket.getInputStream());
+        ) {
+
+      while (true) {
+        String str = in.nextLine();
+        if (str.length() == 0) {
+          break;
+        }
+        System.out.println(str);
+      }
 
       out.println("test...ok!");
       out.flush();
