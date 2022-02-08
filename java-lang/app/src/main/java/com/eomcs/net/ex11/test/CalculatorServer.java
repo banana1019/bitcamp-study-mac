@@ -1,5 +1,7 @@
 package com.eomcs.net.ex11.test;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.PrintStream;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -17,12 +19,18 @@ public class CalculatorServer {
             PrintStream out = new PrintStream(socket.getOutputStream());
             ) {
 
-          out.println("__          __  _                          _ \\");
-          out.println("\\ \\        / / | |                        | |");
-          out.println("\\ \\  /\\  / /__| | ___ ___  _ __ ___   ___| |");
-          out.println("\\ \\/  \\/ / _ \\ |/ __/ _ \\| '_ ` _ \\ / _ \\ |");
-          out.println("\\  /\\  /  __/ | (_| (_) | | | | | |  __/_|");
-          out.println(" \\/  \\/ \\___|_|\\___\\___/|_| |_| |_|\\___(_)");
+          try (BufferedReader welcomeIn = new BufferedReader(new FileReader("welcome.txt"));) {
+            while (true) {
+              String str = welcomeIn.readLine();
+              if (str == null ) {
+                break;
+              }
+              out.println(str);
+            }
+          } catch (Exception e) {
+            out.println("환영합니다!");
+          }
+
           out.println("계산식을 입력하세요!");
           out.println("예) 23 + 7");
           out.println();
