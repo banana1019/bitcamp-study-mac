@@ -107,7 +107,7 @@ public class CalculatorServer {
             out.flush();
 
           } catch (Exception e) {
-            out.println("계산 중 오류 발생 - (예외 메시지)");
+            out.println("계산 중 오류 발생 " + e.getMessage());
             out.flush();
           }
         }
