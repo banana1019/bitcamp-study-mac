@@ -32,8 +32,8 @@ public class CalculatorServer {
     logo = logoStr.toString();
   }
 
-  public static void main(String[] args) throws Exception {
-    try (ServerSocket serverSocket = new ServerSocket(8888)) {
+  public void launch(int port) {
+    try (ServerSocket serverSocket = new ServerSocket(port)) {
       System.out.println("서버 실행 중...");
 
       while (true) {
@@ -42,8 +42,6 @@ public class CalculatorServer {
             Scanner in = new Scanner(socket.getInputStream());
             PrintStream out = new PrintStream(socket.getOutputStream());
             ) {
-
-
 
           out.println("계산식을 입력하세요!");
           out.println("예) 23 + 7");
@@ -61,5 +59,9 @@ public class CalculatorServer {
     } catch (Exception e) {
       System.out.println("서버 소켓 생성 중 오류 발생!");
     }
+  }
+
+  public static void main(String[] args) throws Exception {
+    new CalculatorServer().launch(8888);
   }
 }
