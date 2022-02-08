@@ -8,6 +8,11 @@ import java.net.Socket;
 import java.util.Scanner;
 
 public class CalculatorServer {
+
+  public CalculatorServer() {
+
+  }
+
   public static void main(String[] args) throws Exception {
     try (ServerSocket serverSocket = new ServerSocket(8888)) {
       System.out.println("서버 실행 중...");
