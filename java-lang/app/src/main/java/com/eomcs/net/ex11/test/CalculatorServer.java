@@ -71,9 +71,16 @@ public class CalculatorServer {
         out.println("예) 23 + 7");
         out.println();
 
-        String str = in.nextLine();
-        out.println(str);
-        out.flush();
+        while (true) {
+          String str = in.nextLine();
+          if (str.equals("quit")) {
+            out.println("Goodbye!");
+            out.flush();
+            break;
+          }
+          out.println(str);
+          out.flush();
+        }
 
       } catch (Exception e) {
         System.out.println("클라이언트 요청 처리 중 오류 발생!");
