@@ -37,6 +37,7 @@ public class CalculatorServer {
       while (true) {
         Socket socket = serverSocket.accept();
         RequestHandler requestHandler = new RequestHandler(socket, logo);
+        requestHandler.start();
       }
 
     } catch (Exception e) {
