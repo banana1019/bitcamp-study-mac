@@ -52,11 +52,9 @@ public class CalculatorServer {
   class RequestHandler extends Thread {
 
     Socket socket;
-    String logo;
 
     public RequestHandler(Socket socket, String logo) {
       this.socket = socket;
-      this.logo = logo;
     }
 
     @Override
