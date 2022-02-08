@@ -2,10 +2,8 @@ package com.eomcs.net.ex11.test;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.io.PrintStream;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.Scanner;
 
 public class CalculatorServer {
 
@@ -37,23 +35,8 @@ public class CalculatorServer {
       System.out.println("서버 실행 중...");
 
       while (true) {
-        try (
-            Socket socket = serverSocket.accept();
-            Scanner in = new Scanner(socket.getInputStream());
-            PrintStream out = new PrintStream(socket.getOutputStream());
-            ) {
-
-          out.println("계산식을 입력하세요!");
-          out.println("예) 23 + 7");
-          out.println();
-
-          String str = in.nextLine();
-          out.println(str);
-          out.flush();
-
-        } catch (Exception e) {
-          System.out.println("클라이언트 요청 처리 중 오류 발생!");
-        }
+        Socket socket = serverSocket.accept();
+        RequestHandler requestHandler = new RequestHandler(socket, logo);
       }
 
     } catch (Exception e) {
