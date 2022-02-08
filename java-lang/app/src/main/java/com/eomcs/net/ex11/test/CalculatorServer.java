@@ -9,8 +9,27 @@ import java.util.Scanner;
 
 public class CalculatorServer {
 
-  public CalculatorServer() {
+  String logo;
 
+  public CalculatorServer() {
+    StringBuilder logoStr = new StringBuilder();
+
+    try (BufferedReader welcomeIn = new BufferedReader(new FileReader("welcome.txt"));) {
+      while (true) {
+        String str = welcomeIn.readLine();
+        if (str == null ) {
+          break;
+        }
+        logoStr.append(str + "\n");
+      }
+    } catch (Exception e) {
+      if (logoStr.length() > 0) {
+        logoStr.setLength(0);        
+      }
+      logoStr.append("환영합니다!\n");
+    }
+
+    logo = logoStr.toString();
   }
 
   public static void main(String[] args) throws Exception {
@@ -24,17 +43,7 @@ public class CalculatorServer {
             PrintStream out = new PrintStream(socket.getOutputStream());
             ) {
 
-          try (BufferedReader welcomeIn = new BufferedReader(new FileReader("welcome.txt"));) {
-            while (true) {
-              String str = welcomeIn.readLine();
-              if (str == null ) {
-                break;
-              }
-              out.println(str);
-            }
-          } catch (Exception e) {
-            out.println("환영합니다!");
-          }
+
 
           out.println("계산식을 입력하세요!");
           out.println("예) 23 + 7");
