@@ -21,14 +21,20 @@ public class CalculatorClient {
         System.out.println(str);
       }
 
-      System.out.print("계산식> ");
-      String input = keyScan.nextLine();
+      while (true) {        
+        System.out.print("계산식> ");
+        String input = keyScan.nextLine();
 
-      out.println(input);
-      out.flush();
+        out.println(input);
+        out.flush();
 
-      String str = in.nextLine();
-      System.out.println(str);
+        String str = in.nextLine();
+        System.out.println(str);
+
+        if (input.equals("quit")) {
+          break;
+        }
+      }
 
     } catch (Exception e) {
       System.out.println("서버 연결 오류 발생!");
