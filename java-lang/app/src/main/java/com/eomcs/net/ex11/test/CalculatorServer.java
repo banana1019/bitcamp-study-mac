@@ -17,7 +17,12 @@ public class CalculatorServer {
             PrintStream out = new PrintStream(socket.getOutputStream());
             ) {
 
-          out.println("계산기 서버에 오신 걸 환영합니다!");
+          out.println("__          __  _                          _ \\");
+          out.println("\\ \\        / / | |                        | |");
+          out.println("\\ \\  /\\  / /__| | ___ ___  _ __ ___   ___| |");
+          out.println("\\ \\/  \\/ / _ \\ |/ __/ _ \\| '_ ` _ \\ / _ \\ |");
+          out.println("\\  /\\  /  __/ | (_| (_) | | | | | |  __/_|");
+          out.println(" \\/  \\/ \\___|_|\\___\\___/|_| |_| |_|\\___(_)");
           out.println("계산식을 입력하세요!");
           out.println("예) 23 + 7");
           out.println();
