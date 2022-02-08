@@ -78,7 +78,31 @@ public class CalculatorServer {
             out.flush();
             break;
           }
-          out.println(str);
+
+          String[] values = str.split(" ");
+          int a = Integer.parseInt(values[0]);
+          int b = Integer.parseInt(values[2]);
+          String op = values[1];
+
+          switch (op) {
+            case "+":
+              out.printf("%d %s %d = %d\n", a, op, b, a + b);
+              break;
+            case "-":
+              out.printf("%d %s %d = %d\n", a, op, b, a - b);
+              break;
+            case "*":
+              out.printf("%d %s %d = %d\n", a, op, b, a * b);
+              break;
+            case "/":
+              out.printf("%d %s %d = %d\n", a, op, b, a / b);
+              break;
+            case "%":
+              out.printf("%d %s %d = %d\n", a, op, b, a % b);
+              break;
+            default:
+              out.printf("%d %s %d = %s\n", a, op, b, "지원하지 않는 연산자입니다.");
+          }
           out.flush();
         }
 
