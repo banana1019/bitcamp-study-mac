@@ -79,31 +79,37 @@ public class CalculatorServer {
             break;
           }
 
-          String[] values = str.split(" ");
-          int a = Integer.parseInt(values[0]);
-          int b = Integer.parseInt(values[2]);
-          String op = values[1];
+          try {            
+            String[] values = str.split(" ");
+            int a = Integer.parseInt(values[0]);
+            int b = Integer.parseInt(values[2]);
+            String op = values[1];
 
-          switch (op) {
-            case "+":
-              out.printf("%d %s %d = %d\n", a, op, b, a + b);
-              break;
-            case "-":
-              out.printf("%d %s %d = %d\n", a, op, b, a - b);
-              break;
-            case "*":
-              out.printf("%d %s %d = %d\n", a, op, b, a * b);
-              break;
-            case "/":
-              out.printf("%d %s %d = %d\n", a, op, b, a / b);
-              break;
-            case "%":
-              out.printf("%d %s %d = %d\n", a, op, b, a % b);
-              break;
-            default:
-              out.printf("%d %s %d = %s\n", a, op, b, "지원하지 않는 연산자입니다.");
+            switch (op) {
+              case "+":
+                out.printf("%d %s %d = %d\n", a, op, b, a + b);
+                break;
+              case "-":
+                out.printf("%d %s %d = %d\n", a, op, b, a - b);
+                break;
+              case "*":
+                out.printf("%d %s %d = %d\n", a, op, b, a * b);
+                break;
+              case "/":
+                out.printf("%d %s %d = %d\n", a, op, b, a / b);
+                break;
+              case "%":
+                out.printf("%d %s %d = %d\n", a, op, b, a % b);
+                break;
+              default:
+                out.printf("%d %s %d = %s\n", a, op, b, "지원하지 않는 연산자입니다.");
+            }
+            out.flush();
+
+          } catch (Exception e) {
+            out.println("계산 중 오류 발생 - (예외 메시지)");
+            out.flush();
           }
-          out.flush();
         }
 
       } catch (Exception e) {
