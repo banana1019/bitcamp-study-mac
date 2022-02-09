@@ -41,7 +41,7 @@ public class ChatClient extends Frame {
     add(messageListTa, BorderLayout.CENTER);
 
     Panel bottomPanel = new Panel();
-    topPanel.setLayout(new FlowLayout(FlowLayout.LEFT)); // 기본 레이아웃 관리자를 교체
+    bottomPanel.setLayout(new FlowLayout(FlowLayout.LEFT)); // 기본 레이아웃 관리자를 교체
 
     TextField messageTf = new TextField(40);
     bottomPanel.add(messageTf);
