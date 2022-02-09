@@ -1,4 +1,4 @@
-package com.eomcs.net.ex12;
+package com.eomcs.net.ex12.old;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

@@ -21,6 +21,9 @@ public class ChatClient extends JFrame {
   private static final long serialVersionUID = 1L;
 
   Socket socket;
+  DataInputStream in;
+  DataOutputStream out;
+
   JTextField addressTf = new JTextField(30);
   JTextField portTf = new JTextField(5);
   JTextArea messageListTa = new JTextArea();
@@ -31,9 +34,9 @@ public class ChatClient extends JFrame {
     this.addWindowListener(new WindowAdapter() {
       @Override
       public void windowClosing(WindowEvent e) {
-        try {
-          socket.close();
-        } catch (Exception ex) {}
+        try {in.close();} catch (Exception ex) {}
+        try {out.close();} catch (Exception ex) {}
+        try {socket.close();} catch (Exception ex) {}
         System.exit(0);
       }
     });
@@ -115,16 +118,20 @@ public class ChatClient extends JFrame {
           addressTf.getText(), 
           Integer.parseInt(portTf.getText()));
 
-      DataInputStream in = new DataInputStream(socket.getInputStream());
-      DataOutputStream out = new DataOutputStream(socket.getOutputStream());
+      in = new DataInputStream(socket.getInputStream());
+      out = new DataOutputStream(socket.getOutputStream());
 
     } catch (Exception ex) {
-      JOptionPane.showMessageDialog(this, "서버에 연결 중 오류 발생!", "실행 오류!", JOptionPane.ERROR_MESSAGE);
+      JOptionPane.showMessageDialog(this, "서버 연결 오류!", "통신 오류!", JOptionPane.ERROR_MESSAGE);
     }
   }
 
   public void sendMessage(ActionEvent e) {
     System.out.println("메시지 보내기");
-    System.out.println(messageTf.getText());
+    try {      
+      out.writeUTF(messageTf.getText());
+    } catch (Exception ex) {
+      JOptionPane.showMessageDialog(this, "메시지 전송 오류!", "통신 오류!", JOptionPane.ERROR_MESSAGE);
+    }
   }
 }
