@@ -4,10 +4,13 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 
 public class ChatServer {
 
   int port;
+  @SuppressWarnings("rawtypes")
+  ArrayList clientOutputStreams = new ArrayList();
 
   public ChatServer(int port) {
     this.port = port;
