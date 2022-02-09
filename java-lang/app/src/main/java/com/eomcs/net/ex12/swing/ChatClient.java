@@ -45,7 +45,7 @@ public class ChatClient extends JFrame {
 
       }
     }
-    connectBtn.addActionListener(ChatClient::connectionChatServer);
+    connectBtn.addActionListener(this::connectChatServer);
     topPanel.add(connectBtn);
 
     contentPane.add(topPanel, BorderLayout.NORTH);
