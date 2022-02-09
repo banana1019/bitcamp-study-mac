@@ -1,6 +1,7 @@
 package com.eomcs.net.ex12;
 
 import java.net.ServerSocket;
+import java.net.Socket;
 
 public class ChatServer {
 
@@ -14,8 +15,25 @@ public class ChatServer {
     try (ServerSocket serverSocket = new ServerSocket(this.port)) {
       System.out.println("서버 실행 중...");
 
+      while (true) {
+        Socket socket = serverSocket.accept();
+      }
+
     } catch (Exception e) {
       System.out.println("서버 실행 오류 - " + e.getMessage());
+    }
+  }
+
+  class RequestHandler extends Thread {
+    Socket socket;
+
+    public RequestHandler(Socket socket) {
+      this.socket = socket;
+    }
+
+    @Override
+    public void run() {
+
     }
   }
 
