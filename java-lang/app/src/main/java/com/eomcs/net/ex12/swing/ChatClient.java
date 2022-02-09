@@ -4,6 +4,7 @@ import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JButton;
@@ -38,7 +39,13 @@ public class ChatClient extends JFrame {
     topPanel.add(portTf);
 
     JButton connectBtn = new JButton("연결");
-    connectBtn.addActionListener(e -> System.out.println("연결 버튼 눌렀네!!!"));
+    class MyActionListener implements ActionListener {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+
+      }
+    }
+    connectBtn.addActionListener(ChatClient::connectionChatServer);
     topPanel.add(connectBtn);
 
     contentPane.add(topPanel, BorderLayout.NORTH);
