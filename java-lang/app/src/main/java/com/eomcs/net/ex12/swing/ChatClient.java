@@ -130,6 +130,8 @@ public class ChatClient extends JFrame {
     System.out.println("메시지 보내기");
     try {      
       out.writeUTF(messageTf.getText());
+      out.flush();
+
     } catch (Exception ex) {
       JOptionPane.showMessageDialog(this, "메시지 전송 오류!", "통신 오류!", JOptionPane.ERROR_MESSAGE);
     }

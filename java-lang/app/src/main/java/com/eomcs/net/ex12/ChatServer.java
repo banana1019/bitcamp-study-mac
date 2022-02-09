@@ -1,7 +1,9 @@
 package com.eomcs.net.ex12;
 
+import java.io.DataInputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import com.eomcs.io.ex09.step3.DataOutputStream;
 
 public class ChatServer {
 
@@ -16,7 +18,7 @@ public class ChatServer {
       System.out.println("서버 실행 중...");
 
       while (true) {
-        Socket socket = serverSocket.accept();
+        new RequestHandler(serverSocket.accept()).start();
       }
 
     } catch (Exception e) {
@@ -33,7 +35,23 @@ public class ChatServer {
 
     @Override
     public void run() {
+      try (Socket socket2 = socket;
+          DataOutputStream out = new DataOutputStream(socket.getOutputStream());
+          DataInputStream in = new DataInputStream(socket.getInputStream());) {
 
+        while (true) {          
+          String message = in.readUTF();
+          if (message.equals("\\quit")) {
+            out.writeUTF("Goodbye!");
+            out.flush();
+            break;
+          }
+          out.writeUTF(message);
+          out.flush();
+        }
+      } catch (Exception e) {
+        System.out.println("클라이언트와의 통신 오류! - " + e.getMessage());
+      }
     }
   }
 
