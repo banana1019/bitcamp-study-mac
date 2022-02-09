@@ -21,6 +21,9 @@ public class ChatClient extends Frame {
     TextField addressTF = new TextField();
     this.add(addressTF);
 
+    TextField portTF = new TextField();
+    this.add(portTF);
+
     this.setVisible(true);
   }
 
