@@ -63,8 +63,7 @@ public class ChatServer {
             out.flush();
             break;
           }
-          out.writeUTF(message);
-          out.flush();
+          sendMessage(message);
         }
       } catch (Exception e) {
         System.out.println("클라이언트와의 통신 오류! - " + e.getMessage());
