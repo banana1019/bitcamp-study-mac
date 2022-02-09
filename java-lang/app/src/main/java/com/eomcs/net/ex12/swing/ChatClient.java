@@ -6,13 +6,16 @@ import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.DataInputStream;
 import java.net.Socket;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.UIManager;
+import com.eomcs.io.ex09.step3.DataOutputStream;
 
 public class ChatClient extends JFrame {
   private static final long serialVersionUID = 1L;
@@ -111,8 +114,12 @@ public class ChatClient extends JFrame {
       socket = new Socket(
           addressTf.getText(), 
           Integer.parseInt(portTf.getText()));
-    } catch (Exception ex) {
 
+      DataInputStream in = new DataInputStream(socket.getInputStream());
+      DataOutputStream out = new DataOutputStream(socket.getOutputStream());
+
+    } catch (Exception ex) {
+      JOptionPane.showMessageDialog(this, "서버에 연결 중 오류 발생!", "실행 오류!", JOptionPane.ERROR_MESSAGE);
     }
   }
 
