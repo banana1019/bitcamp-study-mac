@@ -3,6 +3,8 @@ package com.eomcs.net.ex12.swing;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JButton;
@@ -37,6 +39,13 @@ public class ChatClient extends JFrame {
     topPanel.add(portTf);
 
     JButton connectBtn = new JButton("연결");
+    class ConnectBtnListener implements ActionListener {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        System.out.println("연결 버튼 눌렀네!!!");
+      }
+    }
+    connectBtn.addActionListener(new ConnectBtnListener());
     topPanel.add(connectBtn);
 
     contentPane.add(topPanel, BorderLayout.NORTH);
@@ -59,12 +68,13 @@ public class ChatClient extends JFrame {
   }
 
   public static void main(String[] args) throws Exception {
-    //    UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
-
-
+    UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
     //    UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
     //    UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
-    UIManager.setLookAndFeel("com.sun.java.swing.plaf.motif.MotifLookAndFeel");
+    //    UIManager.setLookAndFeel("com.sun.java.swing.plaf.motif.MotifLookAndFeel");
+    //    UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");
+    //    UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+    //    System.out.println(UIManager.getSystemLookAndFeelClassName());
     new ChatClient();
   }
 }
