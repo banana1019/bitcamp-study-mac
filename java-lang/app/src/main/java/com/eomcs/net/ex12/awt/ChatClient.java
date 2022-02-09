@@ -1,6 +1,7 @@
 package com.eomcs.net.ex12.awt;
 
 import java.awt.Frame;
+import java.awt.TextField;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
@@ -16,6 +17,10 @@ public class ChatClient extends Frame {
       }
     });
     this.setSize(400, 300);
+
+    TextField addressTF = new TextField();
+    this.add(addressTF);
+
     this.setVisible(true);
   }
 
