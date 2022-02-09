@@ -6,10 +6,11 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 
+@SuppressWarnings("rawtypes")
 public class ChatServer {
 
   int port;
-  @SuppressWarnings("rawtypes")
+
   ArrayList clientOutputStreams = new ArrayList();
 
   public ChatServer(int port) {
@@ -29,6 +30,13 @@ public class ChatServer {
     }
   }
 
+  public void sendMessage(String message) {
+    for (int i = 0; i < clientOutputStreams.size(); i++) {
+      DataOutputStream out = (DataOutputStream) clientOutputStreams.get(i);
+      try {out.writeUTF(message);} catch (Exception e) {}
+    }
+  }
+
   class RequestHandler extends Thread {
     Socket socket;
 
@@ -36,11 +44,14 @@ public class ChatServer {
       this.socket = socket;
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public void run() {
       try (Socket socket2 = socket;
           DataOutputStream out = new DataOutputStream(socket.getOutputStream());
           DataInputStream in = new DataInputStream(socket.getInputStream())) {
+
+        clientOutputStreams.add(out);
 
         out.writeUTF("환영합니다!");
         out.flush();
