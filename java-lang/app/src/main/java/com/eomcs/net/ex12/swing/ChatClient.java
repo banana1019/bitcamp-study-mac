@@ -3,8 +3,6 @@ package com.eomcs.net.ex12.swing;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.FlowLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JButton;
@@ -39,12 +37,7 @@ public class ChatClient extends JFrame {
     topPanel.add(portTf);
 
     JButton connectBtn = new JButton("연결");
-    connectBtn.addActionListener(new ActionListener() {
-      @Override
-      public void actionPerformed(ActionEvent e) {
-        System.out.println("연결 버튼 눌렀네!!!");
-      }
-    });
+    connectBtn.addActionListener(e -> System.out.println("연결 버튼 눌렀네!!!"));
     topPanel.add(connectBtn);
 
     contentPane.add(topPanel, BorderLayout.NORTH);
