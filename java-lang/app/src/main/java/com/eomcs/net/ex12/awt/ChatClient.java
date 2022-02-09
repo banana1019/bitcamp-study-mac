@@ -2,6 +2,7 @@ package com.eomcs.net.ex12.awt;
 
 import java.awt.BorderLayout;
 import java.awt.Button;
+import java.awt.FlowLayout;
 import java.awt.Frame;
 import java.awt.Panel;
 import java.awt.TextArea;
@@ -23,6 +24,7 @@ public class ChatClient extends Frame {
     this.setSize(400, 300);
 
     Panel topPanel = new Panel();
+    topPanel.setLayout(new FlowLayout(FlowLayout.LEFT)); // 기본 레이아웃 관리자를 교체
 
     TextField addressTf = new TextField(30);
     topPanel.add(addressTf);
@@ -39,6 +41,7 @@ public class ChatClient extends Frame {
     add(messageListTa, BorderLayout.CENTER);
 
     Panel bottomPanel = new Panel();
+    topPanel.setLayout(new FlowLayout(FlowLayout.LEFT)); // 기본 레이아웃 관리자를 교체
 
     TextField messageTf = new TextField(40);
     bottomPanel.add(messageTf);
