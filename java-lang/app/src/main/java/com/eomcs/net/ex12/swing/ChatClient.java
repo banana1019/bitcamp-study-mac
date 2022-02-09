@@ -134,6 +134,8 @@ public class ChatClient extends JFrame {
           String message = in.readUTF();
           messageListTa.append(message + "\n");
 
+          new MessageReceiver(in).start();
+
         } catch (Exception e) {
 
         }
