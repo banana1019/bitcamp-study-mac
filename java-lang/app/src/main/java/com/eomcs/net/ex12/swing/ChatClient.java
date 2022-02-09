@@ -39,13 +39,12 @@ public class ChatClient extends JFrame {
     topPanel.add(portTf);
 
     JButton connectBtn = new JButton("연결");
-    class ConnectBtnListener implements ActionListener {
+    connectBtn.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
         System.out.println("연결 버튼 눌렀네!!!");
       }
-    }
-    connectBtn.addActionListener(new ConnectBtnListener());
+    });
     topPanel.add(connectBtn);
 
     contentPane.add(topPanel, BorderLayout.NORTH);
