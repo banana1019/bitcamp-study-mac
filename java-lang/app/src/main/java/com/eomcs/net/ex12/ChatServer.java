@@ -1,9 +1,9 @@
 package com.eomcs.net.ex12;
 
 import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
-import com.eomcs.io.ex09.step3.DataOutputStream;
 
 public class ChatServer {
 
@@ -37,9 +37,12 @@ public class ChatServer {
     public void run() {
       try (Socket socket2 = socket;
           DataOutputStream out = new DataOutputStream(socket.getOutputStream());
-          DataInputStream in = new DataInputStream(socket.getInputStream());) {
+          DataInputStream in = new DataInputStream(socket.getInputStream())) {
 
-        while (true) {          
+        out.writeUTF("환영합니다!");
+        out.flush();
+
+        while (true) {
           String message = in.readUTF();
           if (message.equals("\\quit")) {
             out.writeUTF("Goodbye!");
@@ -54,6 +57,7 @@ public class ChatServer {
       }
     }
   }
+
 
   public static void main(String[] args) {
     new ChatServer(8888).service();
