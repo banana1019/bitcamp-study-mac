@@ -45,6 +45,26 @@ public class ChatClient extends JFrame {
 
       }
     }
+
+    // 1) 로컬 클래스
+    //    class MyActionListener implements ActionListener {
+    //      @Override
+    //      public void actionPerformed(ActionEvent e) {
+    //      }
+    //    }
+    //    connectBtn.addActionListener(new MyActionListener());
+
+    // 2) 익명 클래스
+    //    connectBtn.addActionListener(new ActionListener() {
+    //      @Override
+    //      public void actionPerformed(ActionEvent e) {
+    //      }
+    //    });
+
+    // 3) 람다(lambda) 문법
+    //    connectBtn.addActionListener(e -> System.out.println("연결 버튼 눌렀음!"));
+
+    // 4) 메서드 레퍼런스
     connectBtn.addActionListener(this::connectChatServer);
     topPanel.add(connectBtn);
 
@@ -60,6 +80,7 @@ public class ChatClient extends JFrame {
     bottomPanel.add(messageTf);
 
     JButton sendBtn = new JButton("보내기");
+    sendBtn.addActionListener(this::sendMessage);
     bottomPanel.add(sendBtn);
 
     contentPane.add(bottomPanel, BorderLayout.SOUTH);
@@ -80,5 +101,9 @@ public class ChatClient extends JFrame {
 
   public void connectChatServer(ActionEvent e) {
     System.out.println("서버에 연결하기");
+  }
+
+  public void sendMessage(ActionEvent e) {
+    System.out.println("메시지 보내기");
   }
 }
