@@ -3,6 +3,7 @@ package com.eomcs.net.ex12.swing;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.swing.JButton;
@@ -68,5 +69,9 @@ public class ChatClient extends JFrame {
     //    UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
     //    System.out.println(UIManager.getSystemLookAndFeelClassName());
     new ChatClient();
+  }
+
+  public void connectChatServer(ActionEvent e) {
+    System.out.println("서버에 연결하기");
   }
 }
