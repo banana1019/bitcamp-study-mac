@@ -118,6 +118,28 @@ public class ChatClient extends JFrame {
       JOptionPane.showMessageDialog(this, "메서지 전송 오류!", "통신 오류!", JOptionPane.ERROR_MESSAGE);
     }
   }
+
+  class MessageReceiver extends Thread {
+
+    DataInputStream in;
+
+    public MessageReceiver(DataInputStream in) {
+      this.in = in;
+    }
+
+    @Override
+    public void run() {
+      while (true) {
+        try {          
+          String message = in.readUTF();
+          messageListTa.append(message + "\n");
+
+        } catch (Exception e) {
+
+        }
+      }
+    }
+  }
 }
 
 
