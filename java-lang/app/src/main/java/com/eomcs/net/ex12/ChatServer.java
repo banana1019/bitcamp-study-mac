@@ -30,15 +30,21 @@ public class ChatServer {
     }
   }
 
+  @SuppressWarnings("unchecked")
   public void sendMessage(String message) {
+    ArrayList deleteStreams = new ArrayList();
     for (int i = 0; i < clientOutputStreams.size(); i++) {
       DataOutputStream out = (DataOutputStream) clientOutputStreams.get(i);
       try {
         out.writeUTF(message);
       } catch (Exception e) {
         System.out.println("전송 오류: " + message);
-        clientOutputStreams.remove(i);
+        deleteStreams.add(out);
       }
+    }
+
+    for (Object deleteStream : deleteStreams) {
+      clientOutputStreams.remove(deleteStream);
     }
   }
 
