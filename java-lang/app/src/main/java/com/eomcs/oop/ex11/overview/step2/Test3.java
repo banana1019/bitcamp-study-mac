@@ -10,9 +10,9 @@ public class Test3 {
     myQueue.offer("윤봉길");    
     myQueue.offer("김구");
 
-    while (myQueue.size() > 0) {
-      System.out.println(myQueue.poll());
+    QueueIterator iterator = new QueueIterator(myQueue);
+    while (iterator.hasNext()) {
+      System.out.println(iterator.next());
     }
-    System.out.println(myQueue.size());
   }
 }
