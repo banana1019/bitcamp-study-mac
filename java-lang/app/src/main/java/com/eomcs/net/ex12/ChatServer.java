@@ -43,7 +43,7 @@ public class ChatServer {
       }
     }
 
-    for (Object deleteStream : deleteStreams) {
+    for (Object deleteStream : deleteStreams) { // 삭제 명단에 등록된 출력 스트림을 클라이언트 목록에서 제거한다.
       clientOutputStreams.remove(deleteStream);
     }
   }
