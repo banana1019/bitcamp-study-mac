@@ -33,7 +33,11 @@ public class ChatServer {
   public void sendMessage(String message) {
     for (int i = 0; i < clientOutputStreams.size(); i++) {
       DataOutputStream out = (DataOutputStream) clientOutputStreams.get(i);
-      try {out.writeUTF(message);} catch (Exception e) {}
+      try {
+        out.writeUTF(message);
+      } catch (Exception e) {
+        System.out.println("전송 오류: " + message);
+      }
     }
   }
 

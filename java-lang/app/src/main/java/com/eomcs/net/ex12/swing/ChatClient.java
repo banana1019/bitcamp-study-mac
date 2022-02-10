@@ -159,6 +159,9 @@ public class ChatClient extends JFrame {
       while (true) {
         try {          
           String message = in.readUTF();
+          if (message.equals("<![QUIT[]]>")) { // 서버에서 연결을 끊겠다는 메시지가 오면 스레드를 종료한다.
+            break; // 스레드 종료? run() 메서드의 실행을 마치면 스레드는 종료한다.
+          }
           messageListTa.append(message + "\n");
 
         } catch (Exception e) {
