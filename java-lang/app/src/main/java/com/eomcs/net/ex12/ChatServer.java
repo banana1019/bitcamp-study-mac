@@ -55,7 +55,7 @@ public class ChatServer {
 
         String nickname = in.readUTF();
 
-        out.writeUTF("환영합니다!");
+        out.writeUTF(nickname + "님 환영합니다!");
         out.flush();
 
         while (true) {

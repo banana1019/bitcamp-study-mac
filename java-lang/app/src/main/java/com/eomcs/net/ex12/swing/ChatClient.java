@@ -32,7 +32,6 @@ public class ChatClient extends JFrame {
   JTextField messageTf = new JTextField(35);
 
   public ChatClient() {
-    super("채팅!!");
 
     String title = "대화명을 입력하세요.\n(2자 이상)";
 
@@ -45,6 +44,8 @@ public class ChatClient extends JFrame {
       }
       title = "대화명을 다시 입력하세요!\n(2자 이상)";
     }
+
+    this.setTitle("채팅 - " + nickname);
 
     addWindowListener(new WindowAdapter() {
       @Override
