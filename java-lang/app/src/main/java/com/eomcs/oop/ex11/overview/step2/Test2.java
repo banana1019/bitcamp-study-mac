@@ -10,9 +10,9 @@ public class Test2 {
     myStack.push("윤봉길");    
     myStack.push("김구");
 
-    while (myStack.size() > 0) {
-      System.out.println(myStack.pop());
+    StackIterator iterator = new StackIterator(myStack);
+    while (iterator.hasNext()) {
+      System.out.println(iterator.next());
     }
-    System.out.println(myStack.size());
   }
 }
