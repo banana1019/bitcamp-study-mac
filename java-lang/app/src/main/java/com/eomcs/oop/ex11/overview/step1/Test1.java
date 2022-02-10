@@ -1,6 +1,6 @@
 package com.eomcs.oop.ex11.overview.step1;
 
-public class Test {
+public class Test1 {
   public static void main(String[] args) {
     MyList myList = new MyList();
     myList.add("홍길동");
