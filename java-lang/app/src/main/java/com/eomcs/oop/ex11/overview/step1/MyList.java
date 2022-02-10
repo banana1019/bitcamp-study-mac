@@ -32,9 +32,11 @@ public class MyList {
 
     Object old = arr[index];
 
-    for (int i = index; i < size; i++) {
+    for (int i = index; i < size - 1; i++) {
       arr[i] = arr[i+1];
     }
+
+    --size;
 
     return old;
   }
