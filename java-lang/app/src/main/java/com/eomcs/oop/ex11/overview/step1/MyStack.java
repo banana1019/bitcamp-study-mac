@@ -11,6 +11,6 @@ public class MyStack extends MyList {
     if (size == 0) {
       throw new EmptyStackException();
     }
-    return remove(--size);
+    return remove(size - 1);
   }
 }
