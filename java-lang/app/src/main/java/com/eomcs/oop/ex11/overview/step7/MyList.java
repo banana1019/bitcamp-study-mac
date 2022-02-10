@@ -42,14 +42,12 @@ public class MyList {
   }
 
   public Iterator iterator() {
-    // local class (로컬 클래스)
-    // - 메서드나 특정 블록 안에서만 사용될 클래스라면
-    //   그 메서드나 블록에서 클래스를 정의함으로써
-    //   명시적으로 사용 범위를 더 제한할 수 있다.
-    // - 단지 사용 범위를 더 제한한 것에 불과하다.
-    // - 로컬 클래스에도 바깥 클래스의 인스턴스 주소를 저장할 필드와 생성자가 자동으로 추가된다.
+    // anonymous class (익명 클래스)
+    // - 클래스의 이름이 없다.
+    // - 그래서 클래스를 정의한 후 따로 인스턴스를 생성할 수 없다.
+    // - 클래스 정의와 인스턴스 생성 문장이 합쳐져 있다.
     //
-    class ListIterator implements Iterator {
+    Iterator obj = new Iterator() {
 
       int cursor;
 
@@ -62,8 +60,8 @@ public class MyList {
       public Object next() {
         return MyList.this.get(cursor++);
       }
-    }
+    };
 
-    return new ListIterator();
+    return obj;
   }
 }
