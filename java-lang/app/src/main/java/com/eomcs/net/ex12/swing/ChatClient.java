@@ -67,6 +67,14 @@ public class ChatClient extends JFrame {
     messageTf.addActionListener(this::sendMessage);
 
     setVisible(true);
+
+    String nickname = null;
+
+    while (true) {
+      nickname = JOptionPane.showInputDialog("대화명을 입력하세요.");
+      System.out.println(nickname);
+    }
+
   }
 
   public static void main(String[] args) throws Exception {
@@ -92,8 +100,7 @@ public class ChatClient extends JFrame {
       in = new DataInputStream(socket.getInputStream());
       out = new DataOutputStream(socket.getOutputStream());
 
-      String welcomeMessage = in.readUTF();
-      messageListTa.append(welcomeMessage + "\n");
+      new MessageReceiver(in).start();
 
     } catch (Exception ex) {
       JOptionPane.showMessageDialog(this, "서버 연결 오류!", "통신 오류!", JOptionPane.ERROR_MESSAGE);
@@ -109,10 +116,6 @@ public class ChatClient extends JFrame {
       out.writeUTF(messageTf.getText());
       out.flush();
       messageTf.setText("");
-
-      String response = in.readUTF();
-      messageListTa.append(response + "\n");
-
 
     } catch (Exception ex) {
       JOptionPane.showMessageDialog(this, "메서지 전송 오류!", "통신 오류!", JOptionPane.ERROR_MESSAGE);
@@ -133,8 +136,6 @@ public class ChatClient extends JFrame {
         try {          
           String message = in.readUTF();
           messageListTa.append(message + "\n");
-
-          new MessageReceiver(in).start();
 
         } catch (Exception e) {
 
