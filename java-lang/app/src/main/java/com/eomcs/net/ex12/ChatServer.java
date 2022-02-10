@@ -61,8 +61,6 @@ public class ChatServer {
         while (true) {
           String message = in.readUTF();
           if (message.equals("\\quit")) {
-            out.writeUTF("Goodbye!");
-            out.flush();
             break;
           }
           sendMessage(String.format("[%s] %s", nickname, message));

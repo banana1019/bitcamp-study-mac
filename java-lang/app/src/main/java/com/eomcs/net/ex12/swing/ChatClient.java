@@ -126,6 +126,7 @@ public class ChatClient extends JFrame {
       } catch (Exception ex) {
       }
       connectBtn.setText("연결");
+      messageListTa.setText("");
     }
 
   }
@@ -167,10 +168,3 @@ public class ChatClient extends JFrame {
     }
   }
 }
-
-
-
-
-
-
-
