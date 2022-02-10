@@ -32,6 +32,17 @@ public class ChatClient extends JFrame {
 
   public ChatClient() {
     super("채팅!!");
+
+    String title = "대화명을 입력하세요.";
+    String nickname = null;
+
+    while (true) {
+      nickname = JOptionPane.showInputDialog(title);
+      if (nickname != null && nickname.length() > 1) {
+        break;
+      }
+    }
+
     addWindowListener(new WindowAdapter() {
       @Override
       public void windowClosing(WindowEvent e) {
@@ -68,12 +79,7 @@ public class ChatClient extends JFrame {
 
     setVisible(true);
 
-    String nickname = null;
 
-    while (true) {
-      nickname = JOptionPane.showInputDialog("대화명을 입력하세요.");
-      System.out.println(nickname);
-    }
 
   }
 
