@@ -82,8 +82,6 @@ public class ChatClient extends JFrame {
 
     setVisible(true);
 
-
-
   }
 
   public static void main(String[] args) throws Exception {
@@ -108,6 +106,9 @@ public class ChatClient extends JFrame {
 
       in = new DataInputStream(socket.getInputStream());
       out = new DataOutputStream(socket.getOutputStream());
+
+      out.writeUTF(nickname);
+      out.flush();
 
       new MessageReceiver(in).start();
 
