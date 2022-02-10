@@ -28,6 +28,7 @@ public class ChatClient extends JFrame {
 
   JTextField addressTf = new JTextField(30);
   JTextField portTf = new JTextField(4);
+  JButton connectBtn = new JButton("연결");
   JTextArea messageListTa = new JTextArea();
   JTextField messageTf = new JTextField(35);
 
@@ -45,7 +46,7 @@ public class ChatClient extends JFrame {
       title = "대화명을 다시 입력하세요!\n(2자 이상)";
     }
 
-    this.setTitle("채팅 - " + nickname);
+    setTitle("채팅 - " + nickname);
 
     addWindowListener(new WindowAdapter() {
       @Override
@@ -63,7 +64,7 @@ public class ChatClient extends JFrame {
     topPanel.setLayout(new FlowLayout(FlowLayout.LEFT)); // 기본 레이아웃 관리자를 교체
     topPanel.add(addressTf);
     topPanel.add(portTf);
-    JButton connectBtn = new JButton("연결");
+
     connectBtn.addActionListener(this::connectChatServer);
     topPanel.add(connectBtn);
     contentPane.add(topPanel, BorderLayout.NORTH);
