@@ -18,4 +18,23 @@ public class MyStack extends MyList {
   public Iterator iterator() {
     return new StackIterator(this);
   }
+
+  static class StackIterator implements Iterator {
+    MyStack stack;
+    int cursor;
+
+    public StackIterator(MyStack stack) {
+      this.stack = stack;
+    }
+
+    @Override
+    public boolean hasNext() {
+      return stack.size() > 0;
+    }
+
+    @Override
+    public Object next() {
+      return stack.pop();
+    }
+  }
 }
