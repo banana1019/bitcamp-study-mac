@@ -10,10 +10,7 @@ public class StackIterator implements Iterator {
 
   @Override
   public boolean hasNext() {
-    if (cursor >= stack.size()) {
-      return false;
-    }
-    return true;
+    return stack.size() > 0;
   }
 
   @Override
