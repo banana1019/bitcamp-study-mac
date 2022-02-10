@@ -42,27 +42,28 @@ public class MyList {
   }
 
   public Iterator iterator() {
+    // local class (로컬 클래스)
+    // - 메서드나 특정 블록 안에서만 사용될 클래스라면
+    //   그 메서드나 블록에서 클래스를 정의함으로써
+    //   명시적으로 사용 범위를 더 제한할 수 있다.
+    // - 단지 사용 범위를 더 제한한 것에 불과하다.
+    // - 로컬 클래스에도 바깥 클래스의 인스턴스 주소를 저장할 필드와 생성자가 자동으로 추가된다.
+    //
+    class ListIterator implements Iterator {
+
+      int cursor;
+
+      @Override
+      public boolean hasNext() {
+        return cursor < MyList.this.size();
+      }
+
+      @Override
+      public Object next() {
+        return MyList.this.get(cursor++);
+      }
+    }
+
     return new ListIterator();
-  }
-
-  // non-static nested class (논스태틱 중첩 클래스)
-  // - inner class 라고도 부른다.
-  // - ListIterator가 사용할 바깥 클래스 MyList의 인스턴스 주소를 저장할 필드와 생성자가 자동으로 추가된다.
-  // - 기존의 static nested class 처럼 개발자가 직접 추가할 필요가 없다.
-  // - 바깥 클래스의 인스턴스를 사용하는 경우, static nested class로 만드는 것보다 더 편리하다.
-  //
-  class ListIterator implements Iterator {
-
-    int cursor;
-
-    @Override
-    public boolean hasNext() {
-      return cursor < MyList.this.size();
-    }
-
-    @Override
-    public Object next() {
-      return MyList.this.get(cursor++);
-    }
   }
 }
