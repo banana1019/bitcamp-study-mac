@@ -40,4 +40,8 @@ public class MyList {
 
     return old;
   }
+
+  public Iterator iterator() {
+    return new ListIterator(this);
+  }
 }
