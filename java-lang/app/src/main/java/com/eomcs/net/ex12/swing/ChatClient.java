@@ -38,7 +38,7 @@ public class ChatClient extends JFrame {
 
     while (true) {
       nickname = JOptionPane.showInputDialog(title);
-      if (nickname != null && nickname.length() > 1) {
+      if (nickname != null && nickname.length() >= 2) {
         break;
       }
     }
