@@ -47,21 +47,16 @@ public class MyList {
     // - 그래서 클래스를 정의한 후 따로 인스턴스를 생성할 수 없다.
     // - 클래스 정의와 인스턴스 생성 문장이 합쳐져 있다.
     //
-    Iterator obj = new Iterator() {
-
+    return new Iterator() {  // Object의 기본 생성자 호출
       int cursor;
-
       @Override
       public boolean hasNext() {
         return cursor < MyList.this.size();
       }
-
       @Override
       public Object next() {
         return MyList.this.get(cursor++);
       }
     };
-
-    return obj;
   }
 }
