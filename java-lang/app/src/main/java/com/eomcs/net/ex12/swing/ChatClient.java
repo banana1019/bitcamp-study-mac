@@ -40,7 +40,7 @@ public class ChatClient extends JFrame {
       nickname = JOptionPane.showInputDialog(title);
       if (nickname == null) {
         System.exit(0);
-      } else if (nickname != null && nickname.length() >= 2) {
+      } else if (nickname.length() >= 2) {
         break;
       }
       title = "대화명을 다시 입력하세요!\n(2자 이상)";
