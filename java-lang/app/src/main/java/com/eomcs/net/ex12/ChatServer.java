@@ -67,6 +67,7 @@ public class ChatServer {
           if (message.equals("\\quit")) {
             out.writeUTF("<![QUIT[]]>"); // 연결을 끊겠다는 특별한 메시지를 클라이언트에게 보낸다.
             out.flush();
+            clientOutputStreams.remove(out); // 메시지 출력 목록에서 연결이 종료된 클라이언트를 제거한다.
             break;
           }
           sendMessage(String.format("[%s] %s", nickname, message));
