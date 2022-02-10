@@ -14,14 +14,28 @@ public class MyList {
     arr[size++] = obj;
   }
 
-  public Object get(int i) {
-    if (i < 0 || i >= size) {
+  public Object get(int index) {
+    if (index < 0 || index >= size) {
       throw new ArrayIndexOutOfBoundsException();
     }
-    return arr[i];
+    return arr[index];
   }
 
   public int size() {
     return size;
+  }
+
+  public Object remove(int index) {
+    if (index < 0 || index >= size) {
+      throw new ArrayIndexOutOfBoundsException();
+    }
+
+    Object old = arr[index];
+
+    for (int i = index; i < size; i++) {
+      arr[i] = arr[i+1];
+    }
+
+    return old;
   }
 }

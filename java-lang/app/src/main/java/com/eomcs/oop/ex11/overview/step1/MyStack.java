@@ -4,4 +4,8 @@ public class MyStack extends MyList {
   public void push(Object obj) {
     this.add(obj);
   }
+
+  public Object pop() {
+    return remove(--size);
+  }
 }
