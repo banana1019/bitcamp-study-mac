@@ -23,7 +23,7 @@ public class MyStack extends MyList {
     // - 단지 사용 범위를 더 제한한 것에 불과하다.
     // - 로컬 클래스에도 바깥 클래스의 인스턴스 주소를 저장할 필드와 생성자가 자동으로 추가된다.
     //
-    class StackIterator implements Iterator {
+    return new Iterator() {
 
       @Override
       public boolean hasNext() {
@@ -34,9 +34,8 @@ public class MyStack extends MyList {
       public Object next() {
         return MyStack.this.pop();
       }
-    }
+    };
 
-    return new StackIterator();
   }
 
 }
