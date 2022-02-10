@@ -37,6 +37,7 @@ public class ChatServer {
         out.writeUTF(message);
       } catch (Exception e) {
         System.out.println("전송 오류: " + message);
+        clientOutputStreams.remove(i);
       }
     }
   }
