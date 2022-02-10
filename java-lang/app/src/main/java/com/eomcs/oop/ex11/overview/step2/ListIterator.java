@@ -12,10 +12,7 @@ public class ListIterator implements Iterator {
 
   @Override
   public boolean hasNext() {
-    if (cursor >= list.size()) {
-      return false;
-    }
-    return true;
+    return cursor < list.size();
   }
 
   @Override
