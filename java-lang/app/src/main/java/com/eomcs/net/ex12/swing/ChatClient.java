@@ -29,6 +29,7 @@ public class ChatClient extends JFrame {
   JTextField addressTf = new JTextField(30);
   JTextField portTf = new JTextField(4);
   JButton connectBtn = new JButton("연결");
+
   JTextArea messageListTa = new JTextArea();
   JTextField messageTf = new JTextField(35);
 
@@ -117,6 +118,8 @@ public class ChatClient extends JFrame {
     } catch (Exception ex) {
       JOptionPane.showMessageDialog(this, "서버 연결 오류!", "통신 오류!", JOptionPane.ERROR_MESSAGE);
     }
+
+    connectBtn.setText("종료");
   }
 
   public void sendMessage(ActionEvent e) {
