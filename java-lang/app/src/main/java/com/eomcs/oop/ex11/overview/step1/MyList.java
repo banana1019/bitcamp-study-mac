@@ -14,7 +14,7 @@ public class MyList {
     arr[size++] = obj;
   }
 
-  public Object get(int i) throws ArrayIndexOutOfBoundsException {
+  public Object get(int i) {
     if (i < 0 || i >= size) {
       throw new ArrayIndexOutOfBoundsException();
     }
