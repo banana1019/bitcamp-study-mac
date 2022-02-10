@@ -8,6 +8,10 @@ public class Test {
     myList.add("유관순");
     myList.add("안중근");    
     myList.add("윤봉길");    
-    myList.add("김구");    
+    myList.add("김구");
+
+    for (int i = 0; i < myList.size(); i++) {
+      System.out.println(myList.get(i));
+    }
   }
 }
