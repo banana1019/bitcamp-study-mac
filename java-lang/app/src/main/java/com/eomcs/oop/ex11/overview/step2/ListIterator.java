@@ -12,13 +12,14 @@ public class ListIterator implements Iterator {
 
   @Override
   public boolean hasNext() {
-    // TODO Auto-generated method stub
-    return false;
+    if (cursor >= list.size()) {
+      return false;
+    }
+    return true;
   }
 
   @Override
   public Object next() {
-    // TODO Auto-generated method stub
-    return null;
+    return list.get(cursor++);
   }
 }
