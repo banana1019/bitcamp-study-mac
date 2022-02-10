@@ -20,4 +20,8 @@ public class MyList {
     }
     return arr[i];
   }
+
+  public int size() {
+    return size;
+  }
 }
