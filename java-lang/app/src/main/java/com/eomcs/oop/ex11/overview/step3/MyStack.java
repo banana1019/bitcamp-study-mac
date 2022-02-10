@@ -13,4 +13,9 @@ public class MyStack extends MyList {
     }
     return remove(size - 1);
   }
+
+  @Override
+  public Iterator iterator() {
+    return new StackIterator(this);
+  }
 }

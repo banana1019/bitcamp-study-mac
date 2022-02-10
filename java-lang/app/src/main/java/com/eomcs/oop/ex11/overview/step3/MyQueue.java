@@ -12,4 +12,9 @@ public class MyQueue extends MyList {
     }
     return remove(0);
   }
+
+  @Override
+  public Iterator iterator() {
+    return new QueueIterator(this);
+  }
 }
