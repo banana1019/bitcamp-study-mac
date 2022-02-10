@@ -39,7 +39,7 @@ public class ChatServer {
         out.writeUTF(message);
       } catch (Exception e) {
         System.out.println("전송 오류: " + message);
-        deleteStreams.add(out);
+        deleteStreams.add(out); // 무효한 출력 스트림은 삭제 명단에 등록한다.
       }
     }
 
