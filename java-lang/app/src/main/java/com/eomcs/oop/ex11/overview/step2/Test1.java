@@ -10,9 +10,9 @@ public class Test1 {
     myList.add("윤봉길");    
     myList.add("김구");
 
-    for (int i = 0; i < myList.size(); i++) {
-      System.out.println(myList.get(i));
+    ListIterator iterator = new ListIterator();
+    while (iterator.hasNext()) {
+      System.out.println(iterator.next());
     }
-    System.out.println(myList.size());
   }
 }
