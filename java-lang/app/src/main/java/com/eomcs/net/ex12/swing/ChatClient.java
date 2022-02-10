@@ -100,26 +100,34 @@ public class ChatClient extends JFrame {
   }
 
   public void connectChatServer(ActionEvent e) {
-    System.out.println("서버에 연결하기!");
+    if (connectBtn.getText().equals("연결")) {
+      try {
+        socket = new Socket(
+            addressTf.getText(), 
+            Integer.parseInt(portTf.getText()));
 
-    try {
-      socket = new Socket(
-          addressTf.getText(), 
-          Integer.parseInt(portTf.getText()));
+        in = new DataInputStream(socket.getInputStream());
+        out = new DataOutputStream(socket.getOutputStream());
 
-      in = new DataInputStream(socket.getInputStream());
-      out = new DataOutputStream(socket.getOutputStream());
+        out.writeUTF(nickname);
+        out.flush();
 
-      out.writeUTF(nickname);
-      out.flush();
+        new MessageReceiver(in).start();
 
-      new MessageReceiver(in).start();
+      } catch (Exception ex) {
+        JOptionPane.showMessageDialog(this, "서버 연결 오류!", "통신 오류!", JOptionPane.ERROR_MESSAGE);
+      }
 
-    } catch (Exception ex) {
-      JOptionPane.showMessageDialog(this, "서버 연결 오류!", "통신 오류!", JOptionPane.ERROR_MESSAGE);
+      connectBtn.setText("종료");
+    } else {
+      try {
+        out.writeUTF("\\quit");
+        out.flush();
+      } catch (Exception ex) {
+      }
+      connectBtn.setText("연결");
     }
 
-    connectBtn.setText("종료");
   }
 
   public void sendMessage(ActionEvent e) {
