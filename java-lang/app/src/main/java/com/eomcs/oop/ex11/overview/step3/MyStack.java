@@ -3,6 +3,7 @@ package com.eomcs.oop.ex11.overview.step3;
 import java.util.EmptyStackException;
 
 public class MyStack extends MyList {
+
   public void push(Object obj) {
     this.add(obj);
   }
