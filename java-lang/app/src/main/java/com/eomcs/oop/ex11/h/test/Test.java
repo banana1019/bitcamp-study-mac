@@ -14,12 +14,9 @@ public class Test {
 
     printList(list);
 
-    //    Node deleted = list.get(0);
-
     list.remove(0);
     list.remove(4);
     list.remove(2);
-
 
     printList(list);
 

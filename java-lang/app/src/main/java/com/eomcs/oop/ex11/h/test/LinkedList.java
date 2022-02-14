@@ -97,8 +97,9 @@ public class LinkedList {
   public Iterator iterator() {
     // anonymous class 활용 예
     // => 오직 한 개의 인스턴스만 생성할 경우
+    // => 다른 문장 안에 넣기
     //
-    Iterator obj =new Iterator() {
+    return new Iterator() {
       int cursor;
       @Override
       public boolean hasNext() {
@@ -109,8 +110,6 @@ public class LinkedList {
         return LinkedList.this.get(cursor++);
       }
     };
-
-    return obj;
   }
 
   // static nested class 활용 예
