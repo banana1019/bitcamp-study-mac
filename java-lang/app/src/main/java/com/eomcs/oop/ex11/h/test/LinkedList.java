@@ -95,29 +95,22 @@ public class LinkedList {
   }
 
   public Iterator iterator() {
-    // local class 활용 예
-    // => 특정 메서드 안에서만 사용될 때
+    // anonymous class 활용 예
+    // => 오직 한 개의 인스턴스만 생성할 경우
     //
-    class ListIterator implements Iterator {
-
+    Iterator obj =new Iterator() {
       int cursor;
-
       @Override
       public boolean hasNext() {
         return cursor < LinkedList.this.size();
       }
-
       @Override
       public Object next() {
         return LinkedList.this.get(cursor++);
-
-        //    int temp = cursor;
-        //    cursor = cursor + 1;
-        //    return list.get(temp);
       }
-    }
+    };
 
-    return new ListIterator(); // new ListIterator(this)
+    return obj;
   }
 
   // static nested class 활용 예
