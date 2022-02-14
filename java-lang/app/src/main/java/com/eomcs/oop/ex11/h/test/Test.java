@@ -14,7 +14,7 @@ public class Test {
 
     printList(list);
 
-    Node deleted = list.get(0);
+    //    Node deleted = list.get(0);
 
     list.remove(0);
     list.remove(4);
@@ -48,8 +48,10 @@ public class Test {
   }
 
   static void printList(LinkedList list) {
-    for (int i = 0; i < list.size(); i++) {
-      System.out.print(list.get(i) + ",");
+    // Iterator를 통해 목록에서 값 꺼내기
+    Iterator iterator = new ListIterator(list);
+    while (iterator.hasNext()) {
+      System.out.print(iterator.next() + ",");
     }
     System.out.println();
     System.out.println("------------------------------------------");
