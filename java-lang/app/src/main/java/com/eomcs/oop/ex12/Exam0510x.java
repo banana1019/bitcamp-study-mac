@@ -2,7 +2,7 @@
 package com.eomcs.oop.ex12;
 
 
-public class Exam0510 {
+public class Exam0510x {
 
   static class MyCalculator {
     public static int plus(int a, int b) {return a + b;}
@@ -16,7 +16,7 @@ public class Exam0510 {
   }
 
   public static void main(String[] args) {
-    // 추상 메서드 한 개짜리 인터페이스의 구현체를 만들 때,
+    // 메서드 한 개짜리 인터페이스의 구현체를 만들 때,
 
     // 1) 익명 클래스 활용
     Calculator obj1 = new Calculator() {

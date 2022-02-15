@@ -26,7 +26,6 @@ public class LinkedList {
     if (node.prev != null) { // 첫 번째 노드가 아니라면
       node.prev.next = newNode; // 앞쪽 노드의 뒤쪽 노드에 새 노드 삽입      
     }
-
     newNode.prev = node.prev; // 새 노드의 앞쪽 노드 설정
 
     node.prev = newNode; // 현재 노드의 앞쪽 노드로 새 노드를 설정
@@ -97,7 +96,7 @@ public class LinkedList {
   public Iterator iterator() {
     // anonymous class 활용 예
     // => 오직 한 개의 인스턴스만 생성할 경우
-    // => return문, 할당문, 파라미터 전달하는 곳에 직접 놓기
+    // => return문, 할당문, 파라미터 전달하는 곳에 놓기
     //
     return new Iterator() {
       int cursor;
