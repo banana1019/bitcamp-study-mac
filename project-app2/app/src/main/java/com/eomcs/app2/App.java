@@ -64,10 +64,11 @@ public class App {
   }
 
   private void createScore() {
-    String name = promptString("이름? ");
-    int kor = promptInt("국어? ");
-    int eng = promptInt("영어? ");
-    int math = promptInt("수학? ");
+    Score score = new Score();
+    score.setName(promptString("이름? "));
+    score.setKor(promptInt("국어? "));
+    score.setEng(promptInt("영어? "));
+    score.setMath(promptInt("수학? "));
   }
 
   private void listScore() {
