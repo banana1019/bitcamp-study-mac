@@ -34,27 +34,28 @@ public class ScoreTable {
 
   public static int insert(Score score) {
     scores.add(score);
-    return 0;
+    save();
+    return 1;
   }
 
   public static Score[] selectList() {
-    // TODO Auto-generated method stub
-    return null;
+    return scores.toArray(new Score[0]);
   }
 
-  public static Score selectOne(int readInt) {
-    // TODO Auto-generated method stub
-    return null;
+  public static Score selectOne(int no) {
+    return scores.get(no);
   }
 
   public static int update(int no, Score score) {
-    // TODO Auto-generated method stub
-    return 0;
+    scores.set(no, score);
+    save();
+    return 1;
   }
 
   public static int delete(int no) {
-    // TODO Auto-generated method stub
-    return 0;
+    scores.remove(no);
+    save();
+    return 1;
   }
 
 
