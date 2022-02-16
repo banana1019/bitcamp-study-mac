@@ -3,7 +3,9 @@ package com.eomcs.app2;
 import java.util.Scanner;
 
 public class App {
-  public static void main(String[] args) {
+
+  public void service() {
+
     Scanner keyScan = new Scanner(System.in);
 
     while (true) {
@@ -37,5 +39,9 @@ public class App {
 
     System.out.println("종료!");
     keyScan.close();
+  }
+
+  public static void main(String[] args) {
+
   }
 }
