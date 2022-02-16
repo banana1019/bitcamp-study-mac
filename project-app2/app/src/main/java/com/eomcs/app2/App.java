@@ -78,12 +78,9 @@ public class App {
   private void listScore() {
     int count = 0;
     for (Score score : scores) {
-      System.out.printf("%d: %s, %d, %d, %d, %d, %.1f\n",
+      System.out.printf("%d: %s, %d, %.1f\n",
           count++,
           score.getName(),
-          score.getKor(),
-          score.getEng(),
-          score.getMath(),
           score.getSum(),
           score.getAverage());
     }
