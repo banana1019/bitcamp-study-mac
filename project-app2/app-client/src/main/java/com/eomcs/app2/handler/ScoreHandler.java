@@ -18,15 +18,23 @@ public class ScoreHandler {
     this.out = out;
   }
 
-  public void create() {
+  public void create() throws Exception {
     Score score = new Score();
     score.setName(Prompt.promptString("이름? "));
     score.setKor(Prompt.promptInt("국어? "));
     score.setEng(Prompt.promptInt("영어? "));
     score.setMath(Prompt.promptInt("수학? "));
 
-    scores.add(score);
-    save();
+    out.writeUTF("insert");
+    out.writeObject(score);
+    out.flush();
+
+    String status = in.readUTF();
+    if (status.equals("success")) {
+      int count = in.readInt();
+    } else {
+      System.out.println(in.readUTF());
+    }
   }
 
   public void list() {
