@@ -1,4 +1,4 @@
-package com.eomcs.app2.handler;
+package com.eomcs.app2.table;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -8,11 +8,11 @@ import java.util.ArrayList;
 import com.eomcs.app2.vo.Score;
 import com.eomcs.util.Prompt;
 
-public class ScoreHandler {
+public class ScoreTable {
 
   ArrayList<Score> scores = new ArrayList<>();
 
-  public ScoreHandler() {
+  public ScoreTable() {
     try (BufferedReader in = new BufferedReader(new FileReader("./score.csv"));) {
       String line;
       while ((line = in.readLine()) != null) {
