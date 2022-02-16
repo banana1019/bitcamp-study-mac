@@ -26,13 +26,7 @@ public class ScoreHandler {
   private void save() {
     try (PrintWriter out = new PrintWriter(new FileWriter("./score.csv"));) {
       for (Score score : scores) {
-        String csv = String.format("%s,%d,%d,%d", 
-            score.getName(),
-            score.getKor(),
-            score.getEng(),
-            score.getMath());
-        out.println(score);
-
+        out.println(score.toCSV());
       }
     } catch (Exception e) {
       System.out.println("데이터 저장 중 오류 발생!");
