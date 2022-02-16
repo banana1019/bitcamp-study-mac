@@ -2,6 +2,8 @@ package com.eomcs.app2;
 
 public class App {
 
+  ScoreHandler scoreHandler = new ScoreHandler();
+
   public static void main(String[] args) {
     new App().service();
   }
@@ -19,11 +21,11 @@ public class App {
 
       try {
         switch (input) {
-          case "1": createScore(); break;
-          case "2": listScore(); break;
-          case "3": detailScore(); break;
-          case "4": updateScore(); break;
-          case "5": deleteScore(); break;
+          case "1": scoreHandler.create(); break;
+          case "2": scoreHandler.list(); break;
+          case "3": scoreHandler.detail(); break;
+          case "4": scoreHandler.update(); break;
+          case "5": scoreHandler.delete(); break;
           default:
             System.out.println("올바른 메뉴 번호를 입력하세요!");
         }
