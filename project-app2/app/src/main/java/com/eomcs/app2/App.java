@@ -4,19 +4,19 @@ import java.util.Scanner;
 
 public class App {
 
+  Scanner keyScan = new Scanner(System.in);
+
+  public static void main(String[] args) {
+    new App().service();
+  }
+
   public void service() {
 
-    Scanner keyScan = new Scanner(System.in);
-
     while (true) {
-      System.out.println("메뉴: ");
-      System.out.println("1. 등록");
-      System.out.println("2. 목록");
-      System.out.println("3. 상세");
-      System.out.println("4. 변경");
-      System.out.println("5. 삭제");
-      System.out.print("명령> ");
-      String input = keyScan.nextLine();
+      printMenu();
+
+      String input = prompt();
+
       if (input.equals("quit") || input.equals("exit")) {
         break;
       }
@@ -41,7 +41,17 @@ public class App {
     keyScan.close();
   }
 
-  public static void main(String[] args) {
+  public void printMenu() {
+    System.out.println("메뉴: ");
+    System.out.println("1. 등록");
+    System.out.println("2. 목록");
+    System.out.println("3. 상세");
+    System.out.println("4. 변경");
+    System.out.println("5. 삭제");
+  }
 
+  public String prompt() {
+    System.out.print("명령> ");
+    return keyScan.nextLine();
   }
 }
