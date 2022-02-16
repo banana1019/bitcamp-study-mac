@@ -78,7 +78,7 @@ public class App {
   private void listScore() {
     for (int i = 0; i < scores.size(); i++) {
       Score score = scores.get(i);
-      System.out.printf("%s, %d, %d, %d, %d, %f\n", 
+      System.out.printf("%s, %d, %d, %d, %d, %.1f\n", 
           score.getName(),
           score.getKor(),
           score.getEng(),
