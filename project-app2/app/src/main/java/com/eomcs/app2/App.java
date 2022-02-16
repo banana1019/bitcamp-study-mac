@@ -1,10 +1,12 @@
 package com.eomcs.app2;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class App {
 
   Scanner keyScan = new Scanner(System.in);
+  ArrayList<Score> scores = new ArrayList<>();
 
   public static void main(String[] args) {
     new App().service();
@@ -69,10 +71,21 @@ public class App {
     score.setKor(promptInt("국어? "));
     score.setEng(promptInt("영어? "));
     score.setMath(promptInt("수학? "));
+
+    scores.add(score);
   }
 
   private void listScore() {
-
+    for (int i = 0; i < scores.size(); i++) {
+      Score score = scores.get(i);
+      System.out.printf("%s, %d, %d, %d, %d, %f\n", 
+          score.getName(),
+          score.getKor(),
+          score.getEng(),
+          score.getMath(),
+          score.getSum(),
+          score.getAverage());
+    }
   }
 
   private void detailScore() {
