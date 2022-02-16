@@ -53,5 +53,4 @@ public class Score {
         + sum + ", average=" + average + "]";
   }
 
-
 }
