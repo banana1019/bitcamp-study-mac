@@ -144,8 +144,5 @@ public class ScoreHandler {
     } else {
       System.out.println(in.readUTF());
     }
-
-    scores.remove(no);
-    save();
   }
 }
