@@ -24,8 +24,8 @@ public class Exam0150 {
     Calculator c3 = (a, b) -> Math.max(a, b);
     System.out.println(c3.compute(10, 20));
 
-    // 
-    //    Calculator c4 = (a,값을 리턴해야 하는데 람다 문장에서 값을 리턴하지 않으면 컴파일 오류! b) -> System.out.println(a + ",", b); // 컴파일 오류!
+    // 값을 리턴해야 하는데 람다 문장에서 값을 리턴하지 않으면 컴파일 오류!
+        Calculator c4 = (a, b) -> System.out.println(a + ",", b); // 컴파일 오류!
     //    System.out.println(c4.compute(10, 20));
   }
 

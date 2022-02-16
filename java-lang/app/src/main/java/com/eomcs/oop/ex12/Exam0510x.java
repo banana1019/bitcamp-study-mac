@@ -16,6 +16,45 @@ public class Exam0510x {
   }
 
   public static void main(String[] args) {
+
+    // 1) 로컬 클래스
+    System.out.println(c1.compute(200, 17));
+
+    // 1) 익명 클래스
+    System.out.println(c2.compute(200, 17));
+
+    // 3) 람다
+    System.out.println(c3.compute(200, 17));
+
+    // 4) 메서드 레퍼런스
+    System.out.println(c4.compute(200, 17));
+
+    class CalculatorImpl implements Calculator {
+      @Override
+      public int compute(int x, int y) {
+        return x + y;
+      }
+    }
+
+    class CalculatorImpl2 implements Calculator {
+      @Override
+      public int compute(int x, int y) {
+        return MyCalculator.plus(x, y);
+      }
+    }
+
+    Calculator calc2 = new Calculator() {
+      @Override
+      public int compute(int x, int y) {
+        return MyCalculator.plus(x, y);
+      }
+    };
+
+    Calculator calc3 = (x, y) -> MyCalculator.plus(x, y);
+
+    Calculator calc4 = MyCalculator::plus;
+    System.out.println(calc4.compute(100, 200));
+
     // 메서드 한 개짜리 인터페이스의 구현체를 만들 때,
 
     // 1) 익명 클래스 활용
