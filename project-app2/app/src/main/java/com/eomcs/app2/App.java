@@ -115,10 +115,10 @@ public class App {
     Score old = scores.get(no);
 
     Score score = new Score();
-    score.setName(promptString(String.format("이름(%s)? ", old.getName())));
-    score.setKor(promptInt(String.format("국어(%d)? ", old.getKor())));
-    score.setEng(promptInt(String.format("영어(%d)? ", old.getEng())));
-    score.setMath(promptInt(String.format("수학(%d)? ", old.getMath())));
+    score.setName(promptString("이름(%s)? ", old.getName()));
+    score.setKor(promptInt("국어(%d)? ", old.getKor()));
+    score.setEng(promptInt("영어(%d)? ", old.getEng()));
+    score.setMath(promptInt("수학(%d)? ", old.getMath()));
 
     scores.set(no, score);
 
