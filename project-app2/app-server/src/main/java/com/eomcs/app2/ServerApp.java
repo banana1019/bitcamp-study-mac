@@ -65,6 +65,7 @@ public class ServerApp {
                 out.writeUTF("fail");
                 out.writeUTF("해당 명령을 지원하지 않습니다.");              
             }
+            out.flush();
           } catch (Exception e) {
             out.writeUTF("fail");
             out.writeUTF("실행 오류: " + e.getMessage());      
