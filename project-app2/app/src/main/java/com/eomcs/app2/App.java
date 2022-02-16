@@ -21,25 +21,20 @@ public class App {
         break;
       }
 
-      switch (input) {
-        case "1":
-          createScore();
-          break;
-        case "2":
-          listScore();
-          break;
-        case "3":
-          detailScore();
-          break;
-        case "4":
-          updateScore();
-          break;
-        case "5":
-          deleteScore();
-          break;
-        default:
-          System.out.println("올바른 메뉴 번호를 입력하세요!");
+      try {
+        switch (input) {
+          case "1": createScore(); break;
+          case "2": listScore(); break;
+          case "3": detailScore(); break;
+          case "4": updateScore(); break;
+          case "5": deleteScore(); break;
+          default:
+            System.out.println("올바른 메뉴 번호를 입력하세요!");
+        }
+      } catch (Exception e) {
+        System.out.println("실행 중 오류 발생 :" + e.getMessage());
       }
+      System.out.println();
     }
 
     System.out.println("종료!");
