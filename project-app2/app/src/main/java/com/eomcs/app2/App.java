@@ -15,7 +15,7 @@ public class App {
     while (true) {
       printMenu();
 
-      String input = prompt();
+      String input = prompt("명령> ");
 
       if (checkQuit(input)) {
         break;
@@ -50,8 +50,8 @@ public class App {
     System.out.println("5. 삭제");
   }
 
-  private String prompt() {
-    System.out.print("명령> ");
+  private String prompt(String title) {
+    System.out.print(title);
     return keyScan.nextLine();
   }
 
@@ -60,8 +60,7 @@ public class App {
   }
 
   private void createScore() {
-    System.out.println("이름? ");
-    String name = keyScan.nextLine();
+    String name = prompt("이름? ");
 
     System.out.println("국어? ");
     int kor = Integer.parseInt(keyScan.nextLine());
