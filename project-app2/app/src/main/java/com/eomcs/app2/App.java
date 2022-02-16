@@ -106,6 +106,21 @@ public class App {
   }
 
   private void updateScore() {
+    int no = promptInt("번호? ");
+    if (no < 0 || no >= scores.size()) {
+      System.out.println("번호가 유효하지 않습니다.");
+      return;
+    }
+
+    Score old = scores.get(no);
+
+    Score score = new Score();
+    score.setName(promptString(String.format("이름(%s)? ", old.getName())));
+    score.setKor(promptInt(String.format("국어(%d)? ", old.getKor())));
+    score.setEng(promptInt(String.format("영어(%d)? ", old.getEng())));
+    score.setMath(promptInt(String.format("수학(%d)? ", old.getMath())));
+
+    scores.set(no, score);
 
   }
 
