@@ -32,6 +32,11 @@ public class ScoreHandler {
     String status = in.readUTF();
     if (status.equals("success")) {
       int count = in.readInt();
+      if (count == 1) {
+        System.out.println("입력했습니다.");
+      } else {
+        System.out.println("입력하지 못했습니다.");
+      }
     } else {
       System.out.println(in.readUTF());
     }
@@ -106,6 +111,11 @@ public class ScoreHandler {
       status = in.readUTF();
       if (status.equals("success")) {
         int count = in.readInt();
+        if (count == 1) {
+          System.out.println("변경했습니다.");
+        } else {
+          System.out.println("변경하지 못했습니다.");
+        }
       } else {
         System.out.println(in.readUTF());
       }
@@ -116,11 +126,23 @@ public class ScoreHandler {
 
   }
 
-  public void delete() {
+  public void delete() throws Exception {
     int no = Prompt.promptInt("번호? ");
-    if (no < 0 || no >= scores.size()) {
-      System.out.println("번호가 유효하지 않습니다.");
-      return;
+
+    out.writeUTF("delete");
+    out.writeInt(no);
+    out.flush();
+
+    String status = in.readUTF();
+    if (status.equals("success")) {
+      int count = in.readInt();
+      if (count == 1) {
+        System.out.println("삭제했습니다.");
+      } else {
+        System.out.println("삭제하지 못했습니다.");
+      }
+    } else {
+      System.out.println(in.readUTF());
     }
 
     scores.remove(no);
