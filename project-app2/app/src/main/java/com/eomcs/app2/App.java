@@ -52,13 +52,13 @@ public class App {
     System.out.println("5. 삭제");
   }
 
-  private String promptString(String title) {
-    System.out.print(title);
+  private String promptString(String titleFormat, Object... args) {
+    System.out.print(String.format(titleFormat, args));
     return keyScan.nextLine();
   }
 
-  private int promptInt(String title) {
-    return Integer.parseInt(promptString(title));
+  private int promptInt(String titleFormat, Object... args) {
+    return Integer.parseInt(promptString(titleFormat, args));
   }
 
   private boolean checkQuit(String input) {
@@ -130,6 +130,7 @@ public class App {
       System.out.println("번호가 유효하지 않습니다.");
       return;
     }
+
     scores.remove(no);
   }
 }
