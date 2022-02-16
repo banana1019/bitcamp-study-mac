@@ -56,7 +56,6 @@ public class App {
   }
 
   private int promptInt(String title) {
-    System.out.print(title);
     return Integer.parseInt(prompt(title));
   }
 
@@ -66,15 +65,9 @@ public class App {
 
   private void createScore() {
     String name = prompt("이름? ");
-
-    System.out.println("국어? ");
-    int kor = Integer.parseInt(keyScan.nextLine());
-
-    System.out.println("영어? ");
-    int eng = Integer.parseInt(keyScan.nextLine());
-
-    System.out.println("수학? ");
-    int math = Integer.parseInt(keyScan.nextLine());
+    int kor = promptInt("국어? ");
+    int eng = promptInt("영어? ");
+    int math = promptInt("수학? ");
   }
 
   private void listScore() {
