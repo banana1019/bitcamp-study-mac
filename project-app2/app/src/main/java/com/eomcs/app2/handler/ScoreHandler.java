@@ -14,14 +14,7 @@ public class ScoreHandler {
     try (BufferedReader in = new BufferedReader(new FileReader("./score.csv"));) {
       String line;
       while ((line = in.readLine()) != null) {
-        String[] values = line.split(",");
-        Score score = new Score();
-        score.setName(values[0]);
-        score.setKor(Integer.parseInt(values[1]));
-        score.setEng(Integer.parseInt(values[2]));
-        score.setMath(Integer.parseInt(values[3]));
-
-        scores.add(score);
+        scores.add(Score.fromCSV(line));
       }
     } catch (Exception e) {
       System.out.println("데이터 로딩 중 오류 발생!");
