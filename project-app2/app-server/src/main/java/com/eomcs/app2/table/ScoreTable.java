@@ -9,9 +9,9 @@ import com.eomcs.app2.vo.Score;
 
 public class ScoreTable {
 
-  ArrayList<Score> scores = new ArrayList<>();
+  static ArrayList<Score> scores = new ArrayList<>();
 
-  public ScoreTable() {
+  static {
     try (BufferedReader in = new BufferedReader(new FileReader("./score.csv"));) {
       String line;
       while ((line = in.readLine()) != null) {
@@ -22,7 +22,7 @@ public class ScoreTable {
     }
   }
 
-  private void save() {
+  private static void save() {
     try (PrintWriter out = new PrintWriter(new FileWriter("./score.csv"));) {
       for (Score score : scores) {
         out.println(score.toCSV());
@@ -33,7 +33,7 @@ public class ScoreTable {
   }
 
   public static int insert(Score score) {
-    // TODO Auto-generated method stub
+    scores.add(score);
     return 0;
   }
 
