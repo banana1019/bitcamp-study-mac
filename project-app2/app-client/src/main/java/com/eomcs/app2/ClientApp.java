@@ -25,6 +25,8 @@ public class ClientApp {
         String input = Prompt.promptString("명령> ");
 
         if (checkQuit(input)) {
+          out.writeUTF("quit");
+          out.flush();
           break;
         }
 

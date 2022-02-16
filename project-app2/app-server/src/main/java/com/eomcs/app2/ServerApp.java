@@ -17,6 +17,7 @@ public class ServerApp {
 
   public void service() {
     try (ServerSocket serverSocket = new ServerSocket(3306);) {
+      System.out.println("서버 실행 중...");
 
       while (true) {
         Socket socket = serverSocket.accept();
