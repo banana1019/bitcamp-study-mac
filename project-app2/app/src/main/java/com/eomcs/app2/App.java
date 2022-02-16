@@ -41,7 +41,7 @@ public class App {
     keyScan.close();
   }
 
-  public void printMenu() {
+  private void printMenu() {
     System.out.println("메뉴: ");
     System.out.println("1. 등록");
     System.out.println("2. 목록");
@@ -50,8 +50,12 @@ public class App {
     System.out.println("5. 삭제");
   }
 
-  public String prompt() {
+  private String prompt() {
     System.out.print("명령> ");
     return keyScan.nextLine();
+  }
+
+  private boolean checkQuit(String input) {
+    return input.equals("quit") || input.equals("exit");
   }
 }
