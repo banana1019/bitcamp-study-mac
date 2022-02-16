@@ -1,4 +1,4 @@
-package com.eomcs.app2;
+package com.eomcs.util;
 
 import java.util.Scanner;
 

@@ -1,5 +1,8 @@
 package com.eomcs.app2;
 
+import com.eomcs.app2.handler.ScoreHandler;
+import com.eomcs.util.Prompt;
+
 public class App {
 
   ScoreHandler scoreHandler = new ScoreHandler();
@@ -46,8 +49,6 @@ public class App {
     System.out.println("4. 변경");
     System.out.println("5. 삭제");
   }
-
-
 
   private boolean checkQuit(String input) {
     return input.equals("quit") || input.equals("exit");
