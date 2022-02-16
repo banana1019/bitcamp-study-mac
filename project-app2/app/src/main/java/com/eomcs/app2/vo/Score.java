@@ -18,6 +18,14 @@ public class Score {
     return score;
   }
 
+  public String toCSV() {
+    return String.format("%s,%d,%d,%d", 
+        this.getName(),
+        this.getKor(),
+        this.getEng(),
+        this.getMath());
+  }
+
   private void compute() {
     sum = kor + eng + math;
     average = sum / 3f;
