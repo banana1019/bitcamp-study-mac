@@ -55,6 +55,11 @@ public class App {
     return keyScan.nextLine();
   }
 
+  private int promptInt(String title) {
+    System.out.print(title);
+    return Integer.parseInt(prompt(title));
+  }
+
   private boolean checkQuit(String input) {
     return input.equals("quit") || input.equals("exit");
   }
