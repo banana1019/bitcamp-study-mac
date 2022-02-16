@@ -81,23 +81,39 @@ public class ScoreHandler {
     }
   }
 
-  public void update() {
+  public void update() throws Exception {
     int no = Prompt.promptInt("번호? ");
-    if (no < 0 || no >= scores.size()) {
-      System.out.println("번호가 유효하지 않습니다.");
-      return;
+
+    out.writeUTF("selectOne");
+    out.writeInt(no);
+    out.flush();
+
+    String status = in.readUTF();
+    if (status.equals("success")) {
+      Score old = (Score) in.readObject();
+
+      Score score = new Score();
+      score.setName(Prompt.promptString("이름(%s)? ", old.getName()));
+      score.setKor(Prompt.promptInt("국어(%d)? ", old.getKor()));
+      score.setEng(Prompt.promptInt("영어(%d)? ", old.getEng()));
+      score.setMath(Prompt.promptInt("수학(%d)? ", old.getMath()));
+
+      out.writeUTF("update");
+      out.writeInt(no);
+      out.writeObject(score);
+      out.flush();
+
+      status = in.readUTF();
+      if (status.equals("success")) {
+        int count = in.readInt();
+      } else {
+        System.out.println(in.readUTF());
+      }
+
+    } else {
+      System.out.println(in.readUTF());
     }
 
-    Score old = scores.get(no);
-
-    Score score = new Score();
-    score.setName(Prompt.promptString("이름(%s)? ", old.getName()));
-    score.setKor(Prompt.promptInt("국어(%d)? ", old.getKor()));
-    score.setEng(Prompt.promptInt("영어(%d)? ", old.getEng()));
-    score.setMath(Prompt.promptInt("수학(%d)? ", old.getMath()));
-
-    scores.set(no, score);
-    save();
   }
 
   public void delete() {
