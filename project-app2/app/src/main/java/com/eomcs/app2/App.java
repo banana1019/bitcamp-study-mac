@@ -17,7 +17,7 @@ public class App {
 
       String input = prompt();
 
-      if (input.equals("quit") || input.equals("exit")) {
+      if (checkQuit(input)) {
         break;
       }
 
