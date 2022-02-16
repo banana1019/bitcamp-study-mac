@@ -29,40 +29,45 @@ public class ServerApp {
             break;
           }
 
-          switch (command) {
-            case "insert":
-              Score score = (Score) in.readObject();
-              int count = ScoreTable.insert(score);
-              out.writeUTF("success");
-              out.writeInt(count);
-              break;
-            case "selectList":
-              Score[] scores = ScoreTable.selectList();
-              out.writeUTF("success");
-              out.writeObject(scores);
-              break;
-            case "selectOne":
-              int no= in.readInt();
-              score = ScoreTable.selectOne(in.readInt());
-              out.writeUTF("success");
-              out.writeObject(score);
-              break;
-            case "update":
-              no= in.readInt();
-              score = (Score) in.readObject();
-              count = ScoreTable.update(no, score);
-              out.writeUTF("success");
-              out.writeInt(count);
-              break;
-            case "delete":
-              no= in.readInt();
-              count = ScoreTable.delete(no);
-              out.writeUTF("success");
-              out.writeInt(count);
-              break;
-            default:
-              out.writeUTF("fail");
-              out.writeUTF("해당 명령을 지원하지 않습니다.");              
+          try {
+            switch (command) {
+              case "insert":
+                Score score = (Score) in.readObject();
+                int count = ScoreTable.insert(score);
+                out.writeUTF("success");
+                out.writeInt(count);
+                break;
+              case "selectList":
+                Score[] scores = ScoreTable.selectList();
+                out.writeUTF("success");
+                out.writeObject(scores);
+                break;
+              case "selectOne":
+                int no= in.readInt();
+                score = ScoreTable.selectOne(in.readInt());
+                out.writeUTF("success");
+                out.writeObject(score);
+                break;
+              case "update":
+                no= in.readInt();
+                score = (Score) in.readObject();
+                count = ScoreTable.update(no, score);
+                out.writeUTF("success");
+                out.writeInt(count);
+                break;
+              case "delete":
+                no= in.readInt();
+                count = ScoreTable.delete(no);
+                out.writeUTF("success");
+                out.writeInt(count);
+                break;
+              default:
+                out.writeUTF("fail");
+                out.writeUTF("해당 명령을 지원하지 않습니다.");              
+            }
+          } catch (Exception e) {
+            out.writeUTF("fail");
+            out.writeUTF("실행 오류: " + e.getMessage());      
           }
 
         }  
