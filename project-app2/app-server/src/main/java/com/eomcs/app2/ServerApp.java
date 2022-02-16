@@ -77,11 +77,12 @@ public class ServerApp {
             }
           } // while (true)
           System.out.println("클라이언트와의 연결을 끊었습니다.");
+
         } catch (Exception e) {
           System.out.println("클라이언트와 통신 중 오류 발생!");
         }
-      }
 
+      } // while (true)
     } catch (Exception e) {
       System.out.println("서버 실행 오류!");
     }

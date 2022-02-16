@@ -23,7 +23,6 @@ public class ClientApp {
 
       while (true) {
         printMenu();
-
         String input = Prompt.promptString("명령> ");
 
         if (checkQuit(input)) {
@@ -67,6 +66,4 @@ public class ClientApp {
   private boolean checkQuit(String input) {
     return input.equals("quit") || input.equals("exit");
   }
-
-
 }
