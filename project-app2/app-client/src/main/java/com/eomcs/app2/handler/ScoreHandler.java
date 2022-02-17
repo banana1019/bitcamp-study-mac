@@ -55,39 +55,19 @@ public class ScoreHandler {
   public void update() throws Exception {
     int no = Prompt.promptInt("번호? ");
 
-    out.writeUTF("selectOne");
-    out.writeInt(no);
-    out.flush();
+    Score old = scoreTable.selectOne(no);
 
-    String status = in.readUTF();
-    if (status.equals("success")) {
-      Score old = (Score) in.readObject();
+    Score score = new Score();
+    score.setName(Prompt.promptString("이름(%s)? ", old.getName()));
+    score.setKor(Prompt.promptInt("국어(%d)? ", old.getKor()));
+    score.setEng(Prompt.promptInt("영어(%d)? ", old.getEng()));
+    score.setMath(Prompt.promptInt("수학(%d)? ", old.getMath()));
 
-      Score score = new Score();
-      score.setName(Prompt.promptString("이름(%s)? ", old.getName()));
-      score.setKor(Prompt.promptInt("국어(%d)? ", old.getKor()));
-      score.setEng(Prompt.promptInt("영어(%d)? ", old.getEng()));
-      score.setMath(Prompt.promptInt("수학(%d)? ", old.getMath()));
-
-      out.writeUTF("update");
-      out.writeInt(no);
-      out.writeObject(score);
-      out.flush();
-
-      status = in.readUTF();
-      if (status.equals("success")) {
-        int count = in.readInt();
-        if (count == 1) {
-          System.out.println("변경했습니다.");
-        } else {
-          System.out.println("변경하지 못했습니다.");
-        }
-      } else {
-        System.out.println(in.readUTF());
-      }
-
+    int count = scoreTable.update(no, score);
+    if (count == 1) {
+      System.out.println("변경했습니다.");
     } else {
-      System.out.println(in.readUTF());
+      System.out.println("변경하지 못했습니다.");
     }
   }
 
