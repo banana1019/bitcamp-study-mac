@@ -58,7 +58,16 @@ public class ScoreTableProxy {
 
   public Score selectOne(int no) {
     try {
+      out.writeUTF("selectOne");
+      out.writeInt(no);
+      out.flush();
 
+      String status = in.readUTF();
+      if (status.equals("success")) {
+        return (Score) in.readObject();
+      } else {
+        throw new RuntimeException(in.readUTF());
+      }
     } catch (Exception e) {
       throw new ScoreTableException(e);
     }
@@ -66,7 +75,17 @@ public class ScoreTableProxy {
 
   public int update(int no, Score score) {
     try {
+      out.writeUTF("update");
+      out.writeInt(no);
+      out.writeObject(score);
+      out.flush();
 
+      String status = in.readUTF();
+      if (status.equals("success")) {
+        return in.readInt();
+      } else {
+        throw new RuntimeException(in.readUTF());
+      }
     } catch (Exception e) {
       throw new ScoreTableException(e);
     }
