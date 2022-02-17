@@ -22,7 +22,7 @@ public class ScoreTableProxy {
       out.writeUTF("quit");
       out.flush();
     } catch (Exception e) {
-
+      // 종료할 때 예외는 무시한다.
     } finally {
       try {out.close();} catch (Exception e) {}
       try {in.close();} catch (Exception e) {}
