@@ -41,23 +41,35 @@ public class ScoreTableProxy {
   }
 
   public static Score[] selectList() {
-    return scores.toArray(new Score[0]);
+    try {
+
+    } catch (Exception e) {
+      throw new ScoreTableException(e);
+    }
   }
 
   public static Score selectOne(int no) {
-    return scores.get(no);
+    try {
+
+    } catch (Exception e) {
+      throw new ScoreTableException(e);
+    }
   }
 
   public static int update(int no, Score score) {
-    scores.set(no, score);
-    save();
-    return 1;
+    try {
+
+    } catch (Exception e) {
+      throw new ScoreTableException(e);
+    }
   }
 
   public static int delete(int no) {
-    scores.remove(no);
-    save();
-    return 1;
+    try {
+
+    } catch (Exception e) {
+      throw new ScoreTableException(e);
+    }
   }
 
 }
