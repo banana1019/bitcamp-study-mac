@@ -40,7 +40,23 @@ public class ScoreTableProxy {
     }
   }
 
-  public static Score[] selectList() {
+  public Score[] selectList() {
+    try {
+      out.writeUTF("selectList");
+      out.flush();
+
+      String status = in.readUTF();
+      if (status.equals("success")) {
+        return (Score[]) in.readObject();
+      } else {
+        throw new RuntimeException(in.readUTF());
+      }
+    } catch (Exception e) {
+      throw new ScoreTableException(e);
+    }
+  }
+
+  public Score selectOne(int no) {
     try {
 
     } catch (Exception e) {
@@ -48,7 +64,7 @@ public class ScoreTableProxy {
     }
   }
 
-  public static Score selectOne(int no) {
+  public int update(int no, Score score) {
     try {
 
     } catch (Exception e) {
@@ -56,15 +72,7 @@ public class ScoreTableProxy {
     }
   }
 
-  public static int update(int no, Score score) {
-    try {
-
-    } catch (Exception e) {
-      throw new ScoreTableException(e);
-    }
-  }
-
-  public static int delete(int no) {
+  public int delete(int no) {
     try {
 
     } catch (Exception e) {
