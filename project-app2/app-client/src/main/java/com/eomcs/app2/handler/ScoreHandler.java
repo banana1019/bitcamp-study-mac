@@ -1,18 +1,15 @@
 package com.eomcs.app2.handler;
 
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import com.eomcs.app2.net.ScoreTableProxy;
 import com.eomcs.app2.vo.Score;
 import com.eomcs.util.Prompt;
 
 public class ScoreHandler {
 
-  ObjectInputStream in;
-  ObjectOutputStream out;
+  ScoreTableProxy scoreTableProxy;
 
-  public ScoreHandler(ObjectInputStream in, ObjectOutputStream out) {
-    this.in = in;
-    this.out = out;
+  public ScoreHandler(ScoreTableProxy scoreTableProxy) {
+    this.scoreTableProxy = scoreTableProxy;
   }
 
   public void create() throws Exception {
