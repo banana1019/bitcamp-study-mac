@@ -93,7 +93,16 @@ public class ScoreTableProxy {
 
   public int delete(int no) {
     try {
+      out.writeUTF("delete");
+      out.writeInt(no);
+      out.flush();
 
+      String status = in.readUTF();
+      if (status.equals("success")) {
+        return in.readInt();
+      } else {
+        throw new RuntimeException(in.readUTF());
+      }
     } catch (Exception e) {
       throw new ScoreTableException(e);
     }
