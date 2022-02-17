@@ -18,9 +18,16 @@ public class ScoreTableProxy {
   }
 
   public void close() {
-    try {out.close();} catch (Exception e) {}
-    try {in.close();} catch (Exception e) {}
-    try {socket.close();} catch (Exception e) {}
+    try {
+      out.writeUTF("quit");
+      out.flush();
+    } catch (Exception e) {
+
+    } finally {
+      try {out.close();} catch (Exception e) {}
+      try {in.close();} catch (Exception e) {}
+      try {socket.close();} catch (Exception e) {}
+    }
   }
 
   public int insert(Score score) {
