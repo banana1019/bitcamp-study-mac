@@ -28,47 +28,28 @@ public class ScoreHandler {
   }
 
   public void list() throws Exception {
-    out.writeUTF("selectList");
-    out.flush();
-
-    String status = in.readUTF();
-    if (status.equals("success")) {
-      Score[] scores = (Score[]) in.readObject();
-      int count = 0;
-      for (Score score : scores) {
-        System.out.printf("%d: %s, %d, %.1f\n",
-            count++,
-            score.getName(), 
-            score.getSum(),
-            score.getAverage());
-      }
-
-    } else {
-      System.out.println(in.readUTF());
+    Score[] scores = scoreTable.selectList();
+    int count = 0;
+    for (Score score : scores) {
+      System.out.printf("%d: %s, %d, %.1f\n",
+          count++,
+          score.getName(), 
+          score.getSum(),
+          score.getAverage());
     }
   }
 
   public void detail() throws Exception {
     int no = Prompt.promptInt("번호? ");
 
-    out.writeUTF("selectOne");
-    out.writeInt(no);
-    out.flush();
+    Score score = scoreTable.selectOne(no);
 
-    String status = in.readUTF();
-    if (status.equals("success")) {
-      Score score = (Score) in.readObject();
-      System.out.printf("이름: %s\n", score.getName());
-      System.out.printf("국어: %d\n", score.getKor());
-      System.out.printf("영어: %d\n", score.getEng());
-      System.out.printf("수학: %d\n", score.getMath());
-      System.out.printf("합계: %d\n", score.getSum());
-      System.out.printf("평균: %.1f\n", score.getAverage());
-
-    } else {
-      System.out.println(in.readUTF());
-    }
-
+    System.out.printf("이름: %s\n", score.getName());
+    System.out.printf("국어: %d\n", score.getKor());
+    System.out.printf("영어: %d\n", score.getEng());
+    System.out.printf("수학: %d\n", score.getMath());
+    System.out.printf("합계: %d\n", score.getSum());
+    System.out.printf("평균: %.1f\n", score.getAverage());
   }
 
   public void update() throws Exception {
