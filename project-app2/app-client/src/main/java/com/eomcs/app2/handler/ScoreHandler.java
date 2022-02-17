@@ -6,10 +6,10 @@ import com.eomcs.util.Prompt;
 
 public class ScoreHandler {
 
-  ScoreTableProxy scoreTableProxy;
+  ScoreTableProxy scoreTable;
 
-  public ScoreHandler(ScoreTableProxy scoreTableProxy) {
-    this.scoreTableProxy = scoreTableProxy;
+  public ScoreHandler(ScoreTableProxy scoreTable) {
+    this.scoreTable = scoreTable;
   }
 
   public void create() throws Exception {
@@ -19,20 +19,11 @@ public class ScoreHandler {
     score.setEng(Prompt.promptInt("영어? "));
     score.setMath(Prompt.promptInt("수학? "));
 
-    out.writeUTF("insert");
-    out.writeObject(score);
-    out.flush();
-
-    String status = in.readUTF();
-    if (status.equals("success")) {
-      int count = in.readInt();
-      if (count == 1) {
-        System.out.println("입력했습니다.");
-      } else {
-        System.out.println("입력하지 못했습니다.");
-      }
+    int count = scoreTable.insert(score);
+    if (count == 1) {
+      System.out.println("입력했습니다.");
     } else {
-      System.out.println(in.readUTF());
+      System.out.println("입력하지 못했습니다.");
     }
   }
 
