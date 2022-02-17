@@ -1,1 +1,1 @@
-# src/main/resouces
+# src/main/resources

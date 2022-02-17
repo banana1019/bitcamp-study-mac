@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import com.eomcs.app2.vo.Score;
 
 public class ScoreTable {
-
   static ArrayList<Score> scores = new ArrayList<>();
 
   static {
@@ -57,6 +56,5 @@ public class ScoreTable {
     save();
     return 1;
   }
-
 
 }

@@ -2,13 +2,10 @@ package com.eomcs.app2.handler;
 
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.ArrayList;
 import com.eomcs.app2.vo.Score;
 import com.eomcs.util.Prompt;
 
 public class ScoreHandler {
-
-  ArrayList<Score> scores = new ArrayList<>();
 
   ObjectInputStream in;
   ObjectOutputStream out;
@@ -43,7 +40,6 @@ public class ScoreHandler {
   }
 
   public void list() throws Exception {
-
     out.writeUTF("selectList");
     out.flush();
 
@@ -54,7 +50,7 @@ public class ScoreHandler {
       for (Score score : scores) {
         System.out.printf("%d: %s, %d, %.1f\n",
             count++,
-            score.getName(),
+            score.getName(), 
             score.getSum(),
             score.getAverage());
       }
@@ -84,6 +80,7 @@ public class ScoreHandler {
     } else {
       System.out.println(in.readUTF());
     }
+
   }
 
   public void update() throws Exception {
@@ -123,7 +120,6 @@ public class ScoreHandler {
     } else {
       System.out.println(in.readUTF());
     }
-
   }
 
   public void delete() throws Exception {
