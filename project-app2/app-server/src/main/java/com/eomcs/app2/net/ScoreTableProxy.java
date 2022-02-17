@@ -23,12 +23,17 @@ public class ScoreTableProxy {
     try {socket.close();} catch (Exception e) {}
   }
 
-  public int insert(Score score) {
+  public int insert(Score score) throws Exception {
     out.writeUTF("insert");
     out.writeObject(score);
     out.flush();
 
-    return 1;
+    String status = in.readUTF();
+    if (status.equals("success")) {
+      return in.readInt();
+    } else {
+      throw new ScoreTableException(in.readUTF());
+    }
   }
 
   public static Score[] selectList() {
