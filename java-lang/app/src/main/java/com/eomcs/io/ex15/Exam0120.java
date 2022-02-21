@@ -13,17 +13,15 @@ public class Exam0120 {
     FileReader in = new FileReader("./temp/aaa.txt");
     FileOutputStream out = new FileOutputStream("./temp/aaax.png");
 
-    char[] buf = new char[1024];
-    int len = 0;
-    while ((len = in.read(buf)) != -1) {
-      System.out.printf("읽은 문자 수 : %d\n", len);
+    char[] buf = new char[1000000];
+    int len = in.read(buf);
+    System.out.printf("읽은 문자 수 : %d\n", len);
 
-      // 문자 배열에 저장된 Base64 텍스트로 바이너리 데이터로 변환하기
-      byte[] decodedBytes = decoder.decode(String.valueOf(buf, 0, len));
+    // 문자 배열에 저장된 Base64 텍스트로 바이너리 데이터로 변환하기
+    byte[] decodedBytes = decoder.decode(String.valueOf(buf, 0, len));
 
-      // 텍스트로 변환된 데이터를 파일로 출력하기
-      out.write(decodedBytes);
-    }
+    // 텍스트로 변환된 데이터를 파일로 출력하기
+    out.write(decodedBytes);
 
     in.close();
     out.close();
