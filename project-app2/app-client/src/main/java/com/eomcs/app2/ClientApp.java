@@ -12,7 +12,6 @@ public class ClientApp {
 
   public void service() {
     try {
-
       ScoreTableProxy scoreTableProxy = new ScoreTableProxy("localhost", 3336);
       ScoreHandler scoreHandler = new ScoreHandler(scoreTableProxy);
 
