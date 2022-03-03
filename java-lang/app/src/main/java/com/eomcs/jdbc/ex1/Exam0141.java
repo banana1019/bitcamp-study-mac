@@ -26,6 +26,7 @@ public class Exam0141 {
 
     try {
       // Driver 구현체를 명시적으로 로딩하지 않는다!
+
       // DriverManager에 자동 등록된 것을 확인해보자!
       java.sql.Driver driver = DriverManager.getDriver("jdbc:mariadb://");
       System.out.println(driver);
@@ -36,6 +37,9 @@ public class Exam0141 {
       //   'service-provider loading' 절차에 따라
       //   .jar 파일에 있는 클래스를 찾아 로딩하거나 객체를 자동으로 생성한다.
       // - JDBC의 경우도 이 규칙을 따른다.
+      //   DriverManager의 getDriver()를 호출할 때
+      //   'service-provider loading' 규칙에 따라 .jar 파일에서
+      //   Driver 구현체를 찾아 자동으로 로딩한다.
       //   즉 'service-provider loading' 규칙에 따라 .jar 파일이 만들어졌다면,
       //   지정한 Driver 구현체가 자동으로 로딩되고 객체가 생성되어 
       //   DriverManager에 등록될 것이다.
