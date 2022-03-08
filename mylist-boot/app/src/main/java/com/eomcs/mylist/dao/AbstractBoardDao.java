@@ -15,7 +15,7 @@ public abstract class AbstractBoardDao implements BoardDao {
   // 서브 클래스에서 접근해야 할 필드라면,
   // 접근 범위를 protected로 설정한다.
   //
-  protected ArrayList boardList = new ArrayList(); // 변수 선언 = 변수를 만들라는 명령!
+  protected ArrayList<Board> boardList = new ArrayList<>(); // 변수 선언 = 변수를 만들라는 명령!
 
   // 1) 데이터를 저장하는 save() 메서드가 반드시 있어야 한다.
   //    - insert(), update(), delete(), increaseViewCount() 메서드에서 save()를 사용한다.
@@ -51,7 +51,7 @@ public abstract class AbstractBoardDao implements BoardDao {
     if (no < 0 || no >= boardList.size()) {
       return null;
     }
-    return (Board) boardList.get(no);
+    return boardList.get(no);
   }
 
   @Override
