@@ -18,7 +18,15 @@ public class JsonBoardDao extends AbstractBoardDao {
   public JsonBoardDao() {
     try {
       ObjectMapper mapper = new ObjectMapper();
-      boardList.addAll(mapper.readValue(new File(filename), 
+
+      //      TypeFactory 타입정보생성기 = mapper.getTypeFactory();
+      //      CollectionType 컬렉션타입정보 = 타입정보생성기.constructCollectionType(List.class, Board.class);
+      //      Collection<Board> list = mapper.readValue(new File(filename), // JSON 데이터
+      //          컬렉션타입정보 // 생성할 목록의 타입 정보(JavaType 객체)
+      //          );
+      //      boardList.addAll(list);
+
+      boardList.addAll(mapper.readValue(new File(filename),
           mapper.getTypeFactory().constructCollectionType(List.class, Board.class)));
 
     } catch (Exception e) {
