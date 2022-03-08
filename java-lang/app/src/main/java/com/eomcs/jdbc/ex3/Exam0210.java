@@ -21,7 +21,7 @@ public class Exam0210 {
     }
 
     try (Connection con = DriverManager.getConnection(
-        "jdbc:mysql://localhost:3306/studydb?user=study&password=1111");
+        "jdbc:mariadb://localhost:3306/studydb?user=study&password=1111");
         PreparedStatement stmt = con.prepareStatement("insert into x_board(title,contents) values(?,?)")) {
 
       // SQL 삽입 공격
@@ -40,9 +40,9 @@ public class Exam0210 {
       stmt.setString(2, contents);
 
       // => 이미 SQL 을 준비한 상태이기 때문에 실행할 때는 SQL를 줄 필요가 없다.
-      // => 서버에 SQL을 전달할 때는 SQL과 값을 분리해서 보내고,
-      //    서버에서 분리된 값을 따로 처리할 것이기 때문에
-      //    SQL 삽입 공격이 불가능한다.
+      // => 서버에 SQL을 전달할 때 
+      //    SQL과 값을 분리해서 보내고 서버에서 분리된 값을 따로 처리할 것이기 때문에
+      //    SQL 삽입 공격이 불가능하다.
       int count = stmt.executeUpdate();
 
       System.out.println(count + " 개를 입력하였습니다.");
