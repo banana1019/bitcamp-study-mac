@@ -1,8 +1,10 @@
 package com.eomcs.mylist.dao;
 
 import java.io.File;
+import java.util.List;
 import org.springframework.stereotype.Repository;
 import com.eomcs.mylist.domain.Board;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 // @Repository
@@ -17,7 +19,7 @@ public class JsonBoardDao extends AbstractBoardDao {
   public JsonBoardDao() {
     try {
       ObjectMapper mapper = new ObjectMapper();
-      boardList.addAll(mapper.readValue(new File(filename), Board[].class));
+      boardList.addAll(mapper.readValue(new File(filename), new TypeReference<List<Board>>(){}));
 
     } catch (Exception e) {
       System.out.println("게시글 데이터 로딩 중 오류 발생!");
