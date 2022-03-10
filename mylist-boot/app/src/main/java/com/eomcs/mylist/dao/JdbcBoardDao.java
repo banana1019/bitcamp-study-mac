@@ -3,6 +3,9 @@ package com.eomcs.mylist.dao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 import org.springframework.stereotype.Repository;
 import com.eomcs.mylist.domain.Board;
 
@@ -24,9 +27,24 @@ public class JdbcBoardDao implements BoardDao {
   }
 
   @Override
-  public Object[] findAll() {
-    // TODO Auto-generated method stub
-    return null;
+  public List<Board> findAll() throws Exception {
+    try (Connection con = DriverManager.getConnection( //
+        "jdbc:mariadb://localhost:3306/studydb?user=study&password=1111");
+        PreparedStatement stmt = con.prepareStatement( //
+            "select board_no,title,created_date,view_count from ml_board order by board_no desc");
+        ResultSet rs = stmt.executeQuery()) {
+
+      ArrayList<Board> arr = new ArrayList<>();
+      while (rs.next()) {
+        Board board = new Board();
+        board.setNo(rs.getInt("board_no"));
+        board.setTitle(rs.getString("title"));
+        board.setCreatedDate(rs.getDate("created_date"));
+        board.setViewCount(rs.getInt("view_count"));
+        arr.add(board);
+      }
+      return arr;
+    }
   }
 
   @Override
