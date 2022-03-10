@@ -1,4 +1,4 @@
-package com.eomcs.mylist.dao;
+package com.eomcs.mylist.dao.mariadb;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Repository;
+import com.eomcs.mylist.dao.BoardDao;
+import com.eomcs.mylist.dao.DaoException;
 import com.eomcs.mylist.domain.Board;
 
 // @Repository
