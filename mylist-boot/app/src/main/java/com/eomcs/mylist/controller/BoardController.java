@@ -27,12 +27,12 @@ public class BoardController {
 
 
   @RequestMapping("/board/get")
-  public Object get(int index) throws Exception {
-    Board board = boardDao.findByNo(index);
+  public Object get(int no) throws Exception {
+    Board board = boardDao.findByNo(no);
     if (board == null) {
       return "";
     }
-    boardDao.increaseViewCount(index);
+    boardDao.increaseViewCount(no);
     return board;
   }
 
