@@ -10,10 +10,10 @@ import org.springframework.stereotype.Repository;
 import com.eomcs.mylist.domain.Board;
 
 // @Repository
-// - 클래스에 이 애노테이션을 붙여 표시해 두면, Spring Boot가 이 클래스의 객체를 자동 생성한다.
+// - 클래스에 이 애노테이션을 붙여 표시해 두면, Spring Boot가 실행될 때 이 클래스의 객체를 자동 생성한다.
 // - 또한 이 객체를 원하는 곳에 자동으로 주입한다.
 //
-@Repository
+@Repository  
 public class JdbcBoardDao implements BoardDao {
 
   public JdbcBoardDao() {
@@ -28,9 +28,9 @@ public class JdbcBoardDao implements BoardDao {
 
   @Override
   public List<Board> findAll() throws Exception {
-    try (Connection con = DriverManager.getConnection( //
+    try (Connection con = DriverManager.getConnection( 
         "jdbc:mariadb://localhost:3306/studydb?user=study&password=1111");
-        PreparedStatement stmt = con.prepareStatement( //
+        PreparedStatement stmt = con.prepareStatement( 
             "select board_no,title,created_date,view_count from ml_board order by board_no desc");
         ResultSet rs = stmt.executeQuery()) {
 
@@ -63,10 +63,10 @@ public class JdbcBoardDao implements BoardDao {
 
   @Override
   public Board findByNo(int no) throws Exception {
-    try (Connection con = DriverManager.getConnection( 
+    try (Connection con = DriverManager.getConnection(
         "jdbc:mariadb://localhost:3306/studydb?user=study&password=1111");
-        PreparedStatement stmt = con.prepareStatement( 
-            "select board_no,title,created_date,view_count from ml_board where board_no=?")) {
+        PreparedStatement stmt = con.prepareStatement(
+            "select board_no,title,content,created_date,view_count from ml_board where board_no=?")) {
 
       stmt.setInt(1, no);
 
@@ -86,9 +86,19 @@ public class JdbcBoardDao implements BoardDao {
   }
 
   @Override
-  public int update(int no, Board board) throws Exception {
-    // TODO Auto-generated method stub
-    return 0;
+  public int update(Board board) throws Exception {
+    try (Connection con = DriverManager.getConnection( //
+        "jdbc:mariadb://localhost:3306/studydb?user=study&password=1111");
+        PreparedStatement stmt = con.prepareStatement( //
+            "update ml_board set title = ?, content= ? where board_no = ?")) {
+
+      stmt.setString(1, board.getTitle());
+      stmt.setString(2, board.getContent());
+      stmt.setInt(3, board.getNo());
+      stmt.executeUpdate();
+
+      return stmt.executeUpdate();
+    }
   }
 
   @Override
@@ -98,9 +108,27 @@ public class JdbcBoardDao implements BoardDao {
   }
 
   @Override
-  public void increaseViewCount(int no) throws Exception {
-    // TODO Auto-generated method stub
+  public int increaseViewCount(int no) throws Exception {
+    try (Connection con = DriverManager.getConnection(
+        "jdbc:mariadb://localhost:3306/studydb?user=study&password=1111");
+        PreparedStatement stmt = con.prepareStatement(
+            "update ml_board set view_count=view_count + 1 where board_no=?")) {
 
+      stmt.setInt(1, no);
+      return stmt.executeUpdate();
+    }
   }
 
+
 }
+
+
+
+
+
+
+
+
+
+
+
