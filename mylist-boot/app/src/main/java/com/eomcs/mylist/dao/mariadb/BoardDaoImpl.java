@@ -16,9 +16,9 @@ import com.eomcs.mylist.domain.Board;
 // - 또한 이 객체를 원하는 곳에 자동으로 주입한다.
 //
 @Repository  
-public class JdbcBoardDao implements BoardDao {
+public class BoardDaoImpl implements BoardDao {
 
-  public JdbcBoardDao() {
+  public BoardDaoImpl() {
     System.out.println("JdbcBoardDao 객체 생성!");
   }
 
