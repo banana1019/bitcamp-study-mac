@@ -16,7 +16,7 @@ public class BoardController {
   BoardDao boardDao;
 
   @RequestMapping("/board/list")
-  public Object list() {
+  public Object list() throws Exception {
     return boardDao.findAll();
   }
 
