@@ -1,6 +1,5 @@
 package com.eomcs.mylist.controller;
 
-import java.sql.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,10 +22,7 @@ public class BoardController {
 
   @RequestMapping("/board/add")
   public Object add(Board board) throws Exception {
-    board.setCreatedDate(new Date(System.currentTimeMillis()));
-    System.out.println(board);
-    boardDao.insert(board);
-    return boardDao.countAll();
+    return boardDao.insert(board);
   }
 
 
