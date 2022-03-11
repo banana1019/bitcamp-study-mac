@@ -18,10 +18,14 @@ public class App {
 
   static {
     try {
-      dataSource = new DriverManagerDataSource(
-          "jdbc:mariadb://localhost:3306/studydb?user=study&password=1111");
-      //      con = DriverManager.getConnection( 
-      //          "jdbc:mariadb://localhost:3306/studydb?user=study&password=1111");
+      DriverManagerDataSource connectionPool = new DriverManagerDataSource();
+      connectionPool.setDriverClassName("org.mariadb.jdbc.Driver");
+      connectionPool.setUrl("jdbc:mariadb://localhost:3306/studydb");
+      connectionPool.setUsername("study");
+      connectionPool.setPassword("1111");
+
+      dataSource = connectionPool;
+
     } catch (Exception e) {
       System.out.println("DB 연결 중 오류 발생!");
     }
