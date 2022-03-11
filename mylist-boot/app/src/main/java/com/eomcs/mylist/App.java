@@ -1,5 +1,7 @@
 package com.eomcs.mylist;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -10,6 +12,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @SpringBootApplication
 public class App {
+
+  static Connection con;
+
+  static {
+    try {
+      con = DriverManager.getConnection( 
+          "jdbc:mariadb://localhost:3306/studydb2?user=study&password=1111");
+    } catch (Exception e) {
+      System.out.println("DB 연결 중 오류 발생!");
+    }
+  }
 
   public static void main(String[] args) {
     SpringApplication.run(App.class, args);
