@@ -1,5 +1,6 @@
 package com.eomcs.mylist.dao.mariadb;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -24,7 +25,8 @@ public class BoardDaoImpl implements BoardDao {
   @Override
   public int countAll() {
     try (
-        PreparedStatement stmt = App.con.prepareStatement( 
+        Connection con = App.dataSource.getConnection();
+        PreparedStatement stmt = con.prepareStatement( 
             "select count(*) from ml_board");
         ResultSet rs = stmt.executeQuery()) {
 
@@ -38,7 +40,8 @@ public class BoardDaoImpl implements BoardDao {
   @Override
   public List<Board> findAll() {
     try (
-        PreparedStatement stmt = App.con.prepareStatement( 
+        Connection con = App.dataSource.getConnection();
+        PreparedStatement stmt = con.prepareStatement( 
             "select board_no,title,created_date,view_count from ml_board order by board_no desc");
         ResultSet rs = stmt.executeQuery()) {
 
@@ -60,8 +63,9 @@ public class BoardDaoImpl implements BoardDao {
   @Override
   public int insert(Board board) {
     try (
+        Connection con = App.dataSource.getConnection();
         PreparedStatement stmt =
-        App.con.prepareStatement("insert into ml_board(title,content) values(?,?)");) {
+            con.prepareStatement("insert into ml_board(title,content) values(?,?)");) {
 
       stmt.setString(1, board.getTitle());
       stmt.setString(2, board.getContent());
@@ -75,7 +79,8 @@ public class BoardDaoImpl implements BoardDao {
   @Override
   public Board findByNo(int no) {
     try (
-        PreparedStatement stmt = App.con.prepareStatement(
+        Connection con = App.dataSource.getConnection();
+        PreparedStatement stmt = con.prepareStatement(
             "select board_no,title,content,created_date,view_count from ml_board where board_no=?")) {
 
       stmt.setInt(1, no);
@@ -100,7 +105,8 @@ public class BoardDaoImpl implements BoardDao {
   @Override
   public int update(Board board) {
     try (
-        PreparedStatement stmt = App.con.prepareStatement(
+        Connection con = App.dataSource.getConnection();
+        PreparedStatement stmt = con.prepareStatement(
             "update ml_board set title=?, content=? where board_no=?")) {
 
       stmt.setString(1, board.getTitle());
@@ -116,7 +122,8 @@ public class BoardDaoImpl implements BoardDao {
   @Override
   public int delete(int no) {
     try (
-        PreparedStatement stmt = App.con.prepareStatement(
+        Connection con = App.dataSource.getConnection();
+        PreparedStatement stmt = con.prepareStatement(
             "delete from ml_board where board_no=?")) {
 
       stmt.setInt(1, no);
@@ -129,7 +136,8 @@ public class BoardDaoImpl implements BoardDao {
   @Override
   public int increaseViewCount(int no) {
     try (
-        PreparedStatement stmt = App.con.prepareStatement(
+        Connection con = App.dataSource.getConnection();
+        PreparedStatement stmt = con.prepareStatement(
             "update ml_board set view_count=view_count + 1 where board_no=?")) {
 
       stmt.setInt(1, no);
