@@ -5,6 +5,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Bean;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,10 +14,10 @@ import org.springframework.web.bind.annotation.RestController;
 @SpringBootApplication
 public class App {
 
-  //DB 커넥션풀 준비
-  public static DataSource dataSource;
-
-  static {
+  // Spring 프레임워크(IoC = 객체풀)에서 객체를 생성한 후 보관하도록 만드는 방법
+  @Bean // => 다음 메서드를 호출한 후 이 메서드가 리턴한 값을 스프링 부트에 보관하라고 지시하는 애너테이션
+  public DataSource createDataSource() {
+    System.out.println("createDataSource() 호출됨!!");
     try {
       DriverManagerDataSource connectionPool = new DriverManagerDataSource();
       connectionPool.setDriverClassName("org.mariadb.jdbc.Driver");
@@ -24,10 +25,10 @@ public class App {
       connectionPool.setUsername("study");
       connectionPool.setPassword("1111");
 
-      dataSource = connectionPool;
+      return connectionPool;
 
     } catch (Exception e) {
-      System.out.println("DB 연결 중 오류 발생!");
+      throw new RuntimeException(e);
     }
   }
 

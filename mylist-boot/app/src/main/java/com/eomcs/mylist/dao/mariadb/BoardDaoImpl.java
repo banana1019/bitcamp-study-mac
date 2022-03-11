@@ -5,8 +5,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
+import javax.sql.DataSource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import com.eomcs.mylist.App;
 import com.eomcs.mylist.dao.BoardDao;
 import com.eomcs.mylist.dao.DaoException;
 import com.eomcs.mylist.domain.Board;
@@ -18,6 +19,9 @@ import com.eomcs.mylist.domain.Board;
 @Repository  
 public class BoardDaoImpl implements BoardDao {
 
+  @Autowired // => 스프링 부트가 보관하고 있는 객체 중에서 다음 타입의 객체가 있다면 주입해 줄 것을 지시하는 애너테이션
+  DataSource dataSource;
+
   public BoardDaoImpl() {
     System.out.println("JdbcBoardDao 객체 생성!");
   }
@@ -25,7 +29,7 @@ public class BoardDaoImpl implements BoardDao {
   @Override
   public int countAll() {
     try (
-        Connection con = App.dataSource.getConnection();
+        Connection con = dataSource.getConnection();
         PreparedStatement stmt = con.prepareStatement( 
             "select count(*) from ml_board");
         ResultSet rs = stmt.executeQuery()) {
@@ -40,7 +44,7 @@ public class BoardDaoImpl implements BoardDao {
   @Override
   public List<Board> findAll() {
     try (
-        Connection con = App.dataSource.getConnection();
+        Connection con = dataSource.getConnection();
         PreparedStatement stmt = con.prepareStatement( 
             "select board_no,title,created_date,view_count from ml_board order by board_no desc");
         ResultSet rs = stmt.executeQuery()) {
@@ -63,7 +67,7 @@ public class BoardDaoImpl implements BoardDao {
   @Override
   public int insert(Board board) {
     try (
-        Connection con = App.dataSource.getConnection();
+        Connection con = dataSource.getConnection();
         PreparedStatement stmt =
             con.prepareStatement("insert into ml_board(title,content) values(?,?)");) {
 
@@ -79,7 +83,7 @@ public class BoardDaoImpl implements BoardDao {
   @Override
   public Board findByNo(int no) {
     try (
-        Connection con = App.dataSource.getConnection();
+        Connection con = dataSource.getConnection();
         PreparedStatement stmt = con.prepareStatement(
             "select board_no,title,content,created_date,view_count from ml_board where board_no=?")) {
 
@@ -105,7 +109,7 @@ public class BoardDaoImpl implements BoardDao {
   @Override
   public int update(Board board) {
     try (
-        Connection con = App.dataSource.getConnection();
+        Connection con = dataSource.getConnection();
         PreparedStatement stmt = con.prepareStatement(
             "update ml_board set title=?, content=? where board_no=?")) {
 
@@ -122,7 +126,7 @@ public class BoardDaoImpl implements BoardDao {
   @Override
   public int delete(int no) {
     try (
-        Connection con = App.dataSource.getConnection();
+        Connection con = dataSource.getConnection();
         PreparedStatement stmt = con.prepareStatement(
             "delete from ml_board where board_no=?")) {
 
@@ -136,7 +140,7 @@ public class BoardDaoImpl implements BoardDao {
   @Override
   public int increaseViewCount(int no) {
     try (
-        Connection con = App.dataSource.getConnection();
+        Connection con = dataSource.getConnection();
         PreparedStatement stmt = con.prepareStatement(
             "update ml_board set view_count=view_count + 1 where board_no=?")) {
 
