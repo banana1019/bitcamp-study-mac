@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Repository;
+import com.eomcs.mylist.App;
 import com.eomcs.mylist.dao.BoardDao;
 import com.eomcs.mylist.dao.DaoException;
 import com.eomcs.mylist.domain.Board;
@@ -24,9 +25,8 @@ public class BoardDaoImpl implements BoardDao {
 
   @Override
   public int countAll() {
-    try (Connection con = DriverManager.getConnection( 
-        "jdbc:mariadb://localhost:3306/studydb?user=study&password=1111");
-        PreparedStatement stmt = con.prepareStatement( 
+    try (
+        PreparedStatement stmt = App.con.prepareStatement( 
             "select count(*) from ml_board");
         ResultSet rs = stmt.executeQuery()) {
 

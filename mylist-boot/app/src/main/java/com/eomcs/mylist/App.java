@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 @SpringBootApplication
 public class App {
 
-  static Connection con;
+  public static Connection con;
 
   static {
     try {
