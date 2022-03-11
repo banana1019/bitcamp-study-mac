@@ -18,7 +18,7 @@ public class App {
   static {
     try {
       con = DriverManager.getConnection( 
-          "jdbc:mariadb://localhost:3306/studydb2?user=study&password=1111");
+          "jdbc:mariadb://localhost:3306/studydb?user=study&password=1111");
     } catch (Exception e) {
       System.out.println("DB 연결 중 오류 발생!");
     }
