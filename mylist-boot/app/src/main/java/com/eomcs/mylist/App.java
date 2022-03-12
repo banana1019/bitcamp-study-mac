@@ -16,7 +16,10 @@ import org.springframework.web.bind.annotation.RestController;
 public class App {
 
   // Spring 프레임워크(IoC = 객체풀)에서 객체를 생성한 후 보관하도록 만드는 방법
-  @Bean // => 다음 메서드를 호출한 후 이 메서드가 리턴한 값을 스프링 부트에 보관하라고 지시하는 애너테이션
+  @Bean
+  // => 스프링 부트를 시작할 때 다음 메서드를 호출하게 만든다.
+  // => 이 메서드가 리턴한 값은 스프링 부트의 객체풀(object pool)에 보관한다.
+  //
   public DataSource createDataSource(
       @Value("${spring.datasource.driver-class-name}") String driverClassName,
       @Value("${spring.datasource.url}") String url,
