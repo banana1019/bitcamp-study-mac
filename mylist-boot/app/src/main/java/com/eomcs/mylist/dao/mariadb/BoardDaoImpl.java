@@ -66,15 +66,8 @@ public class BoardDaoImpl implements BoardDao {
 
   @Override
   public int delete(int no) {
-    try (
-        Connection con = dataSource.getConnection();
-        PreparedStatement stmt = con.prepareStatement(
-            "delete from ml_board where board_no=?")) {
-
-      stmt.setInt(1, no);
-      return stmt.executeUpdate();
-    } catch (Exception e) {
-      throw new DaoException(e);
+    try (SqlSession sqlSession = sqlSessionFactory.openSession();) { // SQL을 실행시켜주는 도구를 준비
+      return sqlSession.delete("BoardDao.sql6", no);
     }
   }
 

@@ -46,4 +46,9 @@
     select count(*) from ml_board
   </select>
   
+  <delete id="sql6" parameterType="int">
+    delete from ml_board 
+    where board_no=#{no}
+  </delete>
+  
 </mapper>
