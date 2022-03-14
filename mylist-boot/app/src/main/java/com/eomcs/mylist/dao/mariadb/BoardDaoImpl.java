@@ -71,27 +71,8 @@ public class BoardDaoImpl implements BoardDao {
 
   @Override
   public Board findByNo(int no) {
-    try (
-        Connection con = dataSource.getConnection();
-        PreparedStatement stmt = con.prepareStatement(
-            "select board_no,title,content,created_date,view_count from ml_board where board_no=?")) {
-
-      stmt.setInt(1, no);
-
-      try (ResultSet rs = stmt.executeQuery()) {
-        if (!rs.next())
-          return null;
-
-        Board board = new Board();
-        board.setNo(rs.getInt("board_no"));
-        board.setTitle(rs.getString("title"));
-        board.setContent(rs.getString("content"));
-        board.setCreatedDate(rs.getDate("created_date"));
-        board.setViewCount(rs.getInt("view_count"));
-        return board;
-      }
-    } catch (Exception e) {
-      throw new DaoException(e);
+    try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+      return sqlSession.selectOne("BoardDao.sql2", no);
     }
   }
 

@@ -45,6 +45,7 @@ public class App {
   }
 
   // Mybatis 객체 준비
+  @Bean
   public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
     SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
 
@@ -53,7 +54,7 @@ public class App {
 
     // 2) SQL 문이 들어 있는 파일의 위치를 설정한다.
     PathMatchingResourcePatternResolver resourceResolver = new PathMatchingResourcePatternResolver();
-    sqlSessionFactoryBean.setMapperLocations(resourceResolver.getResource("classpath:com/eomcs/mylist/dao/*.xml"));
+    sqlSessionFactoryBean.setMapperLocations(resourceResolver.getResources("classpath:com/eomcs/mylist/dao/*.xml"));
 
     return sqlSessionFactoryBean.getObject();
   }

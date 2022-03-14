@@ -6,14 +6,27 @@
 
   <select id="sql1" resultType="com.eomcs.mylist.domain.Board">
     select 
-      board_no,
+      board_no as no,
       title,
-      created_date,
-      view_count 
+      created_date as createDate,
+      view_count as viewCount
     from 
       ml_board 
     order by 
       board_no desc
+  </select>
+  
+  <select id="sql2" resultType="com.eomcs.mylist.domain.Board" parameterType="int">
+    select 
+      board_no as no,
+      title,
+      content,
+      created_date as createdDate,
+      view_count as viewCount
+    from 
+      ml_board 
+    where 
+      board_no=#{no}
   </select>
   
 </mapper>
