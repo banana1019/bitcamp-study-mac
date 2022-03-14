@@ -29,4 +29,9 @@
       board_no=#{no}
   </select>
   
+  <insert id="sql3" parameterType="com.eomcs.mylist.domain.Board">
+    insert into ml_board(title,content) 
+    values(#{title},#{content})
+  </insert>
+  
 </mapper>

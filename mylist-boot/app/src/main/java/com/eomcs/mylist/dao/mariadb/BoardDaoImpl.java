@@ -55,23 +55,15 @@ public class BoardDaoImpl implements BoardDao {
 
   @Override
   public int insert(Board board) {
-    try (
-        Connection con = dataSource.getConnection();
-        PreparedStatement stmt =
-            con.prepareStatement("insert into ml_board(title,content) values(?,?)");) {
-
-      stmt.setString(1, board.getTitle());
-      stmt.setString(2, board.getContent());
-
-      return stmt.executeUpdate();
-    } catch (Exception e) {
-      throw new DaoException(e);
+    try (SqlSession sqlSession = sqlSessionFactory.openSession();) { // SQL을 실행시켜주는 도구를 준비
+      return sqlSession.insert("BoardDao.sql3", board);
     }
   }
 
   @Override
   public Board findByNo(int no) {
     try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+      System.out.println(sqlSession.getClass().getName());
       return sqlSession.selectOne("BoardDao.sql2", no);
     }
   }
