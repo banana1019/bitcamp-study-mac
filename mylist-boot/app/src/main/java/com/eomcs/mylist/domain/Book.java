@@ -7,10 +7,10 @@ public class Book implements java.io.Serializable {
   String title;
   String author;
   String press;
+  String feed;
+  Date readDate;
   int page;
   int price;
-  Date readDate;
-  String feed;
 
   @Override
   public String toString() {
