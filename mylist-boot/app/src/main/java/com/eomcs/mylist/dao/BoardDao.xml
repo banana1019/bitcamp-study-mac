@@ -51,4 +51,10 @@
     where board_no=#{no}
   </delete>
   
+  <update id="sql7" parameterType="int">
+    update ml_board set
+      view_count=view_count + 1
+    where board_no=#{no}
+  </update>
+  
 </mapper>
