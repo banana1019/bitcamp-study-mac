@@ -33,6 +33,11 @@
 			<attribute name="gradle_used_by_scope" value="main,test"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/Users/nana/.gradle/caches/modules-2/files-2.1/org.mybatis.spring.boot/mybatis-spring-boot-starter/2.2.2/e4aff8ef9e02358f90b361acc938be3558f29285/mybatis-spring-boot-starter-2.2.2.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry sourcepath="/Users/nana/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-jdbc/2.6.1/c614c13df2fa3640218136ff119b106ef0fad67e/spring-boot-starter-jdbc-2.6.1-sources.jar" kind="lib" path="/Users/nana/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter-jdbc/2.6.1/c4c7fbb8cf37b295fe715f66531af1370cf3b633/spring-boot-starter-jdbc-2.6.1.jar">
 		<attributes>
 			<attribute name="gradle_used_by_scope" value="main,test"/>
@@ -49,6 +54,21 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry sourcepath="/Users/nana/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter/2.6.1/3d0881881868d6a74f1f1388d6c4a3169861dc71/spring-boot-starter-2.6.1-sources.jar" kind="lib" path="/Users/nana/.gradle/caches/modules-2/files-2.1/org.springframework.boot/spring-boot-starter/2.6.1/39d77929829c82b102248630047abf0f69b96a7b/spring-boot-starter-2.6.1.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/nana/.gradle/caches/modules-2/files-2.1/org.mybatis.spring.boot/mybatis-spring-boot-autoconfigure/2.2.2/99e858786ccedf9e8003ee36961d689ea1e5193a/mybatis-spring-boot-autoconfigure-2.2.2-sources.jar" kind="lib" path="/Users/nana/.gradle/caches/modules-2/files-2.1/org.mybatis.spring.boot/mybatis-spring-boot-autoconfigure/2.2.2/44d8e5740eb89fcdd3d4f7ce60693b87a5cdbd32/mybatis-spring-boot-autoconfigure-2.2.2.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/nana/.gradle/caches/modules-2/files-2.1/org.mybatis/mybatis/3.5.9/f1f73896d2fdcaa2fb8b2f75c2505c26f06da56a/mybatis-3.5.9-sources.jar" kind="lib" path="/Users/nana/.gradle/caches/modules-2/files-2.1/org.mybatis/mybatis/3.5.9/991a4095dbb95d929dfe0a18a69692fd4c614e/mybatis-3.5.9.jar">
+		<attributes>
+			<attribute name="gradle_used_by_scope" value="main,test"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry sourcepath="/Users/nana/.gradle/caches/modules-2/files-2.1/org.mybatis/mybatis-spring/2.0.7/e88bbf172f759b8546192cb5f489b83a6bc556ff/mybatis-spring-2.0.7-sources.jar" kind="lib" path="/Users/nana/.gradle/caches/modules-2/files-2.1/org.mybatis/mybatis-spring/2.0.7/f10e399232df99280df56d39662c00ea33756112/mybatis-spring-2.0.7.jar">
 		<attributes>
 			<attribute name="gradle_used_by_scope" value="main,test"/>
 		</attributes>
