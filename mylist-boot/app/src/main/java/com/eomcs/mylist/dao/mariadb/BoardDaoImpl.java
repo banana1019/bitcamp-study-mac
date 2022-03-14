@@ -71,7 +71,7 @@ public class BoardDaoImpl implements BoardDao {
   @Override
   public int update(Board board) {
     try (SqlSession sqlSession = sqlSessionFactory.openSession();) { // SQL을 실행시켜주는 도구를 준비
-      return sqlSession.insert("BoardDao.sql4", board);
+      return sqlSession.update("BoardDao.sql4", board);
     }
   }
 

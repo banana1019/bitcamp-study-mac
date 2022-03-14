@@ -34,12 +34,12 @@
     values(#{title},#{content})
   </insert>
   
-  <insert id="sql4" parameterType="com.eomcs.mylist.domain.Board">
+  <update id="sql4" parameterType="com.eomcs.mylist.domain.Board">
     update ml_board set 
       title=#{title}, 
       content=#{content} 
     where 
       board_no=#{no}
-  </insert>
+  </update>
   
 </mapper>
