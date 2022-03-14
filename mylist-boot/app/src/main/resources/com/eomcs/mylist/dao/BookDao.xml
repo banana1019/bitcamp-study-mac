@@ -8,7 +8,7 @@
 
   <!-- 테이블의 컬럼과 객체 필드를 연결한다. -->
   <resultMap type="book" id="bookMap">
-    <id column="board_no" property="no"/>
+    <id column="book_no" property="no"/>
     <result column="title" property="title"/>
     <result column="author" property="author"/>
     <result column="press" property="press"/>
