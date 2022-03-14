@@ -42,4 +42,8 @@
       board_no=#{no}
   </update>
   
+  <select id="sql5" resultType="int">
+    select count(*) from ml_board
+  </select>
+  
 </mapper>

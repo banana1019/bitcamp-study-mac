@@ -2,7 +2,6 @@ package com.eomcs.mylist.dao.mariadb;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.List;
 import javax.sql.DataSource;
 import org.apache.ibatis.session.SqlSession;
@@ -32,17 +31,8 @@ public class BoardDaoImpl implements BoardDao {
 
   @Override
   public int countAll() {
-    // DataSource에서 얻은 커넥션 객체는 close() 할 때 연결을 끊는 것이 아니라 DataSource에 반납된다.
-    try (
-        Connection con = dataSource.getConnection();
-        PreparedStatement stmt = con.prepareStatement( 
-            "select count(*) from ml_board");
-        ResultSet rs = stmt.executeQuery()) {
-
-      rs.next();
-      return rs.getInt(1);
-    } catch (Exception e) {
-      throw new DaoException(e);
+    try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
+      return sqlSession.selectOne("BoardDao.sql5");
     }
   }
 
@@ -63,7 +53,6 @@ public class BoardDaoImpl implements BoardDao {
   @Override
   public Board findByNo(int no) {
     try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
-      System.out.println(sqlSession.getClass().getName());
       return sqlSession.selectOne("BoardDao.sql2", no);
     }
   }
