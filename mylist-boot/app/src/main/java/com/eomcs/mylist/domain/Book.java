@@ -2,7 +2,7 @@ package com.eomcs.mylist.domain;
 
 import java.sql.Date;
 
-public class Book implements java.io.Serializable {
+public class Book {
   int no;
   String title;
   String author;
@@ -17,7 +17,6 @@ public class Book implements java.io.Serializable {
     return "Book [no=" + no + ", title=" + title + ", author=" + author + ", press=" + press
         + ", page=" + page + ", price=" + price + ", readDate=" + readDate + ", feed=" + feed + "]";
   }
-
   public int getNo() {
     return no;
   }
@@ -66,5 +65,6 @@ public class Book implements java.io.Serializable {
   public void setFeed(String feed) {
     this.feed = feed;
   }
+
 
 }

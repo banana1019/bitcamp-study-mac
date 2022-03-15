@@ -25,16 +25,13 @@ public class BookController {
 
 
   @RequestMapping("/book/get")
-  public Object get(int no) throws Exception {
+  public Object get(int no) {
     Book book = bookDao.findByNo(no);
-    if (book == null) {
-      return "";
-    }
-    return book;
+    return book != null ? book : "";
   }
 
   @RequestMapping("/book/update")
-  public Object update(Book book) throws Exception {
+  public Object update(Book book) throws Exception{
     return bookDao.update(book);
   }
 
@@ -42,7 +39,6 @@ public class BookController {
   public Object delete(int no) throws Exception {
     return bookDao.delete(no);
   }
-
 }
 
 
