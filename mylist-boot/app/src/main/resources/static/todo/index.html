@@ -124,12 +124,12 @@
      titleInput.parentNode.querySelector("span").style["display"] = "";
    }
    var titleTd = $(`tr[data-no="${no}"] > td.todo-title`);
-   var titleSpan = titleTd.querySelector("span");
-   titleSpan.style["display"] = "none";
-   titleInput.value = titleSpan.innerHTML;
+   var titleSpan = titleTd.find("span");
+   titleSpan.css("display", "none");
+   titleInput.value = titleSpan.html();
    titleInput.setAttribute("data-no", no);
    titleTd.appendChild(titleInput);
-   titleInput.style["display"] = "";
+   titleInput.css("display", "");
  }
 
  titleInput.onkeyup = function(e) {
