@@ -29,15 +29,16 @@
 
 <input type="text" id="x-title-input">
 
+<script type="text/javascript" src="../myQuery.js"></script>
 <script type="text/javascript">
   "use strict"
 
-  var titleInput = document.querySelector("#x-title-input");
+  var titleInput = myQuery("#x-title-input");
   titleInput.style["display"] = "none";
 
-  var tbody = document.querySelector("#x-todo-table tbody");
+  var tbody = myQuery("#x-todo-table tbody");
 
-  document.querySelector("#x-todo-input").onkeyup = function(e) {
+  myQuery("#x-todo-input").onkeyup = function(e) {
     if (e.keyCode == 27) {
       e.target.value = "";
 
@@ -79,7 +80,7 @@
         <td><button type="button" onclick="deleteTodo(${todo.no})">삭제</button></td>`;
         tbody.appendChild(tr);
       }
-      document.querySelector("#x-todo-input").focus();
+      myQuery("#x-todo-input").focus();
     });
 
  function deleteTodo(no) {
@@ -122,7 +123,7 @@
      // 다른 항목을 편집하기 위해 이동하기 전에 편집 전의 상태로 되돌린다.
      titleInput.parentNode.querySelector("span").style["display"] = "";
    }
-   var titleTd = document.querySelector(`tr[data-no="${no}"] > td.todo-title`);
+   var titleTd = myQuery(`tr[data-no="${no}"] > td.todo-title`);
    var titleSpan = titleTd.querySelector("span");
    titleSpan.style["display"] = "none";
    titleInput.value = titleSpan.innerHTML;
