@@ -125,9 +125,9 @@
    }
    var titleTd = $(`tr[data-no="${no}"] > td.todo-title`);
    var titleSpan = titleTd.find("span");
-   titleSpan.css("display", "none");
-   titleInput.value = titleSpan.html();
-   titleInput.setAttribute("data-no", no);
+   titleSpan.css( "display", "none" );
+   titleInput.val( titleSpan.html() );
+   titleInput.attr("data-no", no);
    titleTd.appendChild(titleInput);
    titleInput.css("display", "");
  }
