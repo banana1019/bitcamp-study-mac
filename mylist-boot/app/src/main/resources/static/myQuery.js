@@ -22,6 +22,7 @@ function myQuery(selector, parent) {
       return e.style[name];
     } else if (arguments.length == 2) {
       e.style[name] = value;
+      return e;
     }
   };
   
@@ -36,6 +37,7 @@ function myQuery(selector, parent) {
       return e.innerHTML;
     } else if (arguments.length == 1) {
       e.innerHTML = content;
+      return e;
     }
   };
   
@@ -46,6 +48,7 @@ function myQuery(selector, parent) {
       return e.value;
     } else {
       e.value = v;
+      return e;
     }
   };
   
@@ -55,6 +58,7 @@ function myQuery(selector, parent) {
       return e.getAttribute(name);
     } else if ( arguments.length == 2) {
       e.setAttribute(name, value);
+      return e;
     }
   };
   
@@ -62,6 +66,11 @@ function myQuery(selector, parent) {
   e.parent = function() {
     return myQuery(e.parentNode);
   };
+  
+  // 현재 태그를 부모 태그에 자식 태그로 만든다.
+  e.appendTo = function(parent) {
+    parent.appendChild(e);
+  }
   
   return e;
 }
