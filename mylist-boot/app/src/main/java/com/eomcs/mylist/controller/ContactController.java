@@ -36,7 +36,11 @@ public class ContactController {
   @RequestMapping("/contact/get")
   public Object get(int no) {
     Contact contact = contactDao.findByNo(no);
-    return contact != null ? contact : "";
+    if (contact == null) {
+      return "";
+    }
+    contact.setTels(contactDao.findTelByContactNo(no));
+    return contact;
   }
 
   @RequestMapping("/contact/update")
