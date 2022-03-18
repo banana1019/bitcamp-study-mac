@@ -10,7 +10,26 @@
 
 <form>
 이름*: <input id="x-name" type="text"><br>
-전화*: <input id="x-tel" type="text"><br>
+<div class="x-tel-div">
+전화*: <select>
+         <option>전화</option>
+         <option>팩스</option>
+         <option>휴대전화</option>
+         <option>직장전화</option>
+         <option>직장팩스</option>
+       </select>
+       <input type="text"><br>
+</div>
+<div class="x-tel-div">
+전화*: <select>
+         <option>전화</option>
+         <option>팩스</option>
+         <option>휴대전화</option>
+         <option>직장전화</option>
+         <option>직장팩스</option>
+       </select>
+       <input type="text"><br>
+</div>
 이메일*: <input id="x-email" type="text"><br>
 회사: <input id="x-company" type="text"><br>
 별표(*) 항목은 필수 입력입니다.<br>
@@ -21,23 +40,25 @@
 <script type="text/javascript">
   var xName = document.querySelector("#x-name");
   var xEmail = document.querySelector("#x-email");
-  var xTel = document.querySelector("#x-tel");
   var xCompany = document.querySelector("#x-company");
 
   document.querySelector("#x-add-btn").onclick = function() {
-    if (xName.value == "" || xEmail.value == "" || xTel.value == "") {
+    if (xName.value == "" || xEmail.value == "" /* || xTel.value == "" */) {
       window.alert("필수 입력 항목이 비어 있습니다.");
       return;
     }
+    console.log(xName.value);
+    console.log(xEmail.value);
+    console.log(xCompany.value);
 
-    fetch(`/contact/add?name=${xName.value}&email=${xEmail.value}&tel=${xTel.value}&company=${xCompany.value}`)
+/*     fetch(`/contact/add?name=${xName.value}&email=${xEmail.value}&tel=${xTel.value}&company=${xCompany.value}`)
       .then(function(response) {
         return response.text();
       })
       .then(function(text) {
         console.log(text);
         location.href = "index.html";
-      });
+      }); */
   };
 
   document.querySelector("#x-cancel-btn").onclick = function() {
