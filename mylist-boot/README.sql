@@ -58,3 +58,11 @@ insert into ml_contact(contact_no,name,email,company)
 -- 연락처에 전화번호 추가
 insert into ml_cont_tel(ct_no, contact_no, tt_no, tel)
   values(1, 1, 1, '02-1111-1111');
+insert into ml_cont_tel(ct_no, contact_no, tt_no, tel)
+  values(2, 1, 2, '02-1111-1112');
+insert into ml_cont_tel(ct_no, contact_no, tt_no, tel)
+  values(3, 1, 3, '02-1111-1111');
+insert into ml_cont_tel(ct_no, contact_no, tt_no, tel)
+  values(4, 2, 3, '02-1111-2222');
+insert into ml_cont_tel(ct_no, contact_no, tt_no, tel)
+  values(5, 3, 3, '02-1111-3333');
