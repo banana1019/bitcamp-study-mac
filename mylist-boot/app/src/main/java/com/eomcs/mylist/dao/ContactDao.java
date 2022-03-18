@@ -26,11 +26,11 @@ public interface ContactDao {
 
   List<ContactTel> findByContactNo(int contactNo);
 
-  int addTel(ContactTel tel);
+  int insertTel(ContactTel tel);
 
   int updateTel(ContactTel tel);
 
-  int removeTel(int telNo);
+  int deleteTel(int telNo);
 }
 
 
