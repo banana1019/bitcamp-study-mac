@@ -31,6 +31,8 @@ public interface ContactDao {
   int updateTel(ContactTel tel);
 
   int deleteTel(int telNo);
+
+  int deleteTelByContactNo(int contactNo);
 }
 
 

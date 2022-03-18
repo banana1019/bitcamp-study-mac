@@ -120,6 +120,11 @@
     delete from ml_cont_tel
     where ct_no=#{no}
   </delete>
+  
+  <delete id="deleteTelByContactNo" parameterType="int">
+    delete from ml_cont_tel
+    where contact_no=#{no}
+  </delete>
 
 </mapper>
 
