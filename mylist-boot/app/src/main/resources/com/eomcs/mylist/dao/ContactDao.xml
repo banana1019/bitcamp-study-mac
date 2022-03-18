@@ -91,7 +91,7 @@
     where contact_no=#{no}
   </delete>
   
-  <select id="findByContactNo" parameterType="int" resultMap="contactTelMap">
+  <select id="findTelByContactNo" parameterType="int" resultMap="contactTelMap">
     select
       ct_no,
       contact_no,

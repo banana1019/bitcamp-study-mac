@@ -1,5 +1,6 @@
 package com.eomcs.mylist.controller;
 
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,7 +16,11 @@ public class ContactController {
 
   @RequestMapping("/contact/list")
   public Object list() {
-    return contactDao.findAll(); 
+    List<Contact> contacts = contactDao.findAll();
+    for (Contact contact : contacts) {
+      contact.setTels(contactDao.findTelByContactNo(contact.getNo()));
+    }
+    return contacts;
   }
 
   @RequestMapping("/contact/add")
