@@ -27,7 +27,7 @@ public class ContactController {
   public Object add(Contact contact, String[] tel) throws Exception {
     contactDao.insert(contact);
     for (int i = 0; i < tel.length; i++) {
-      String[] value = tel[i].split(",");
+      String[] value = tel[i].split("_");
       if (value[1].length() == 0) {
         continue;
       }
@@ -52,7 +52,7 @@ public class ContactController {
     if (count > 0) {
       contactDao.deleteTelByContactNo(contact.getNo());
       for (int i = 0; i < tel.length; i++) {
-        String[] value = tel[i].split(",");
+        String[] value = tel[i].split("_");
         if (value[1].length() == 0) {
           continue;
         }
