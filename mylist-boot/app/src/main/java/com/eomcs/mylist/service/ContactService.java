@@ -2,10 +2,12 @@ package com.eomcs.mylist.service;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import com.eomcs.mylist.dao.ContactDao;
 import com.eomcs.mylist.domain.Contact;
 import com.eomcs.mylist.domain.ContactTel;
 
+@Service
 public class ContactService {
 
   @Autowired

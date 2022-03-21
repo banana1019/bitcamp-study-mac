@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.support.TransactionTemplate;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.eomcs.mylist.dao.ContactDao;
 import com.eomcs.mylist.domain.Contact;
 import com.eomcs.mylist.domain.ContactTel;
 import com.eomcs.mylist.service.ContactService;
@@ -15,9 +14,6 @@ public class ContactController {
 
   @Autowired
   ContactService contactService;
-
-  @Autowired
-  ContactDao contactDao;
 
   @Autowired
   TransactionTemplate transactionTemplate;
