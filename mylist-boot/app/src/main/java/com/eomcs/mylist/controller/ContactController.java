@@ -7,13 +7,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.eomcs.mylist.domain.Contact;
 import com.eomcs.mylist.domain.ContactTel;
-import com.eomcs.mylist.service.ContactService;
+import com.eomcs.mylist.service.ContactServiceNonTransaction;
 
 @RestController 
 public class ContactController {
 
   @Autowired
-  ContactService contactService;
+  ContactServiceNonTransaction contactService;
 
   @Autowired
   TransactionTemplate transactionTemplate;

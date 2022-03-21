@@ -8,7 +8,7 @@ import com.eomcs.mylist.domain.Contact;
 import com.eomcs.mylist.domain.ContactTel;
 
 @Service
-public class ContactService {
+public class ContactServiceNonTransaction {
 
   @Autowired
   ContactDao contactDao;
