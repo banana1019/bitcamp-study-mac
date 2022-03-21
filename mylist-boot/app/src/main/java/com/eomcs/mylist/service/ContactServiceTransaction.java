@@ -3,8 +3,6 @@ package com.eomcs.mylist.service;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.TransactionStatus;
-import org.springframework.transaction.support.TransactionCallback;
 import org.springframework.transaction.support.TransactionTemplate;
 import com.eomcs.mylist.dao.ContactDao;
 import com.eomcs.mylist.domain.Contact;
@@ -21,19 +19,14 @@ public class ContactServiceTransaction {
 
   public int add(Contact contact) {
 
-    TransactionCallback<Integer> contactAddTransaction = new TransactionCallback<>() {
-      @Override
-      public Integer doInTransaction(TransactionStatus status) {
-        contactDao.insert(contact);
-        for (ContactTel tel : contact.getTels()) {
-          tel.setContactNo(contact.getNo()); // 전화번호 입력 전에 자동 생성된 연락처 번호를 설정한다.
-          contactDao.insertTel(tel);
-        }
-        return 1;
-      }      
-    };
-
-    return transactionTemplate.execute(contactAddTransaction);
+    return transactionTemplate.execute(status -> {
+      contactDao.insert(contact);
+      for (ContactTel tel : contact.getTels()) {
+        tel.setContactNo(contact.getNo()); // 전화번호 입력 전에 자동 생성된 연락처 번호를 설정한다.
+        contactDao.insertTel(tel);
+      }
+      return 1;
+    });
   }
 
   public List<Contact> list() {
