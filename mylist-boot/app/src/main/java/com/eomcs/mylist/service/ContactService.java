@@ -30,10 +30,22 @@ public class ContactService {
 
   public Contact get(int no) {
     Contact contact = contactDao.findByNo(no);
-    if (contact == null) {
+    if (contact != null) {
       contact.setTels(contactDao.findTelByContactNo(no));
     }
 
     return contact;
+  }
+
+  public int update(Contact contact) {
+    int count = contactDao.update(contact);
+    if (count > 0) {
+      contactDao.deleteTelByContactNo(contact.getNo()); // 전화번호 변경 전에 기존 전화번호를 모두 삭제한다.
+      for (ContactTel tel : contact.getTels()) {
+        tel.setContactNo(contact.getNo()); // 전화번호 입력 전에 자동 생성된 연락처 번호를 설정한다.
+        contactDao.insertTel(tel);
+      }
+    }
+    return count;
   }
 }
