@@ -1,8 +1,7 @@
-package com.eomcs.mylist.service;
+package com.eomcs.mylist.service.impl;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionStatus;
@@ -10,15 +9,17 @@ import org.springframework.transaction.support.DefaultTransactionDefinition;
 import com.eomcs.mylist.dao.ContactDao;
 import com.eomcs.mylist.domain.Contact;
 import com.eomcs.mylist.domain.ContactTel;
+import com.eomcs.mylist.service.ContactService;
 
-@Service
-public class ContactServiceTransaction2 {
+//@Service
+public class TransactionManagerContactService implements ContactService {
   @Autowired
   ContactDao contactDao;
 
   @Autowired
   PlatformTransactionManager transactionManager;
 
+  @Override
   public int add(Contact contact) {
     DefaultTransactionDefinition def = new DefaultTransactionDefinition();
     def.setName("t1"); // 트랜잭션 이름 설정. 같은 이름의 트랜잭션에 묶인 경우 한 단위로 취급한다.
@@ -43,6 +44,7 @@ public class ContactServiceTransaction2 {
     }
   }
 
+  @Override
   public List<Contact> list() {
     List<Contact> contacts = contactDao.findAll();
     for (Contact contact : contacts) {
@@ -51,6 +53,7 @@ public class ContactServiceTransaction2 {
     return contacts;
   }
 
+  @Override
   public Contact get(int no) {
     Contact contact = contactDao.findByNo(no);
     if (contact != null) {
@@ -59,6 +62,7 @@ public class ContactServiceTransaction2 {
     return contact;
   }
 
+  @Override
   public int update(Contact contact) {
     DefaultTransactionDefinition def = new DefaultTransactionDefinition();
     def.setName("t1"); 
@@ -82,6 +86,7 @@ public class ContactServiceTransaction2 {
     }
   }
 
+  @Override
   public int delete(int no) {
     DefaultTransactionDefinition def = new DefaultTransactionDefinition();
     def.setName("t1"); 
