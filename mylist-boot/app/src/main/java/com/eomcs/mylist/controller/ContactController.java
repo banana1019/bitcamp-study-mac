@@ -79,18 +79,22 @@ public class ContactController {
 
   @RequestMapping("/contact/update")
   public Object update(Contact contact, String[] tel) throws Exception {
-    int count = contactDao.update(contact);
-    if (count > 0) {
-      contactDao.deleteTelByContactNo(contact.getNo());
-      for (int i = 0; i < tel.length; i++) {
-        String[] value = tel[i].split("_");
-        if (value[1].length() == 0) {
-          continue;
-        }
-        contactDao.insertTel(new ContactTel(contact.getNo(), Integer.parseInt(value[0]), value[1]));
+    // 요청 파라미터 분석 및 가공
+    ArrayList<ContactTel> telList = new ArrayList<>();
+    for (int i = 0; i < tel.length; i++) {
+      String[] value = tel[i].split("_");
+      if (value[1].length() == 0) {
+        continue;
       }
+      // 연락처 변경의 경우 이미 연락처 번호를 알기 때문에 
+      // 전화번호를 객체에 담을 때 연락처 번호도 함께 저장한다.
+      ContactTel contactTel = new ContactTel(contact.getNo(), Integer.parseInt(value[0]), value[1]);
+      telList.add(contactTel);
     }
-    return count;
+    contact.setTels(telList);
+
+    // 서비스 객체 실행
+    return contactService.update(contact);
   }
 
   @RequestMapping("/contact/delete")

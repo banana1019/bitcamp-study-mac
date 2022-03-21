@@ -42,8 +42,7 @@ public class ContactService {
     if (count > 0) {
       contactDao.deleteTelByContactNo(contact.getNo()); // 전화번호 변경 전에 기존 전화번호를 모두 삭제한다.
       for (ContactTel tel : contact.getTels()) {
-        tel.setContactNo(contact.getNo()); // 전화번호 입력 전에 자동 생성된 연락처 번호를 설정한다.
-        contactDao.insertTel(tel);
+        contactDao.insertTel(tel); // 전화번호 객체 안에 이미 연락처 번호가 저장되어 있다.
       }
     }
     return count;
