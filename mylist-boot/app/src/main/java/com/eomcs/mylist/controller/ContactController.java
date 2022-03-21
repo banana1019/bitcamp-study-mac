@@ -99,8 +99,7 @@ public class ContactController {
 
   @RequestMapping("/contact/delete")
   public Object delete(int no) throws Exception {
-    contactDao.deleteTelByContactNo(no);
-    return contactDao.delete(no);
+    return contactService.delete(no);
   }
 
 }

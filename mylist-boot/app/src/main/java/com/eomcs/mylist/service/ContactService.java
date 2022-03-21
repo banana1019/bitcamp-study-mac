@@ -47,4 +47,9 @@ public class ContactService {
     }
     return count;
   }
+
+  public int delete(int no) {
+    contactDao.deleteTelByContactNo(no);
+    return contactDao.delete(no);
+  }
 }
