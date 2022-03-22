@@ -22,6 +22,7 @@
 </table>
 
 <script id="tr-template" type="text/x-handlebars-template">
+{{#each this}}
 <tr>
   <td>{{no}}</td>
   <td><a href="view.html?no={{no}}">{{name}}</a></td>
@@ -29,6 +30,7 @@
   <td>{{tels.[0].tel}}</td>
   <td>{{company}}</td>
 </tr>
+{{/each}}
 </script>
 
 <script src="../node_modules/handlebars/dist/handlebars.min.js"></script>
@@ -46,14 +48,8 @@
       return response.json();
     })
     .then(function(contacts) {
-    	var tbodyContent = "";
-      for (var contact of contacts) {
-    	  // 값이 들어있는 객체를 가지고 템플릿 엔진을 실행하여 HTML을 생성한다.
-    	  var str = htmlGenerator(contact);
-        
-    	  tbodyContent += str;
-      }
-      tbody.innerHTML = tbodyContent;
+    	// 서버에서 받은 연락처 배열을 가지고 템플릿 엔진을 실행하여 tbody 콘텐트를 생성한다.
+      tbody.innerHTML = htmlGenerator(contacts);
     });
   
 </script>
