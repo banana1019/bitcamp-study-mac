@@ -2,7 +2,6 @@ package com.eomcs.mylist.controller;
 
 import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.support.TransactionTemplate;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.eomcs.mylist.domain.Contact;
@@ -13,10 +12,7 @@ import com.eomcs.mylist.service.ContactService;
 public class ContactController {
 
   @Autowired
-  ContactService contactService;
-
-  @Autowired
-  TransactionTemplate transactionTemplate;
+  ContactService contactService; // 클래스 대신 인터페이스를 지정한다.
 
   @RequestMapping("/contact/list")
   public Object list() {
@@ -42,25 +38,26 @@ public class ContactController {
     return contactService.add(contact);
 
     /*
-      class ContactAddTransaction implements TransactionCallback {
-        @Override
-        public Object doInTransaction(TransactionStatus status) {
-          // 1) 트랜잭션으로 묶어서 실행할 작업을 정의
-          // => 스프링 프레임워크에서 정한 규칙에 따라 정의해야 한다.
-          contactDao.insert(contact);
-          for (int i = 0; i < tel.length; i++) {
-            String[] value = tel[i].split("_");
-            if (value[1].length() == 0) {
-              continue;
-            }
-            contactDao.insertTel(new ContactTel(contact.getNo(), Integer.parseInt(value[0]), value[1]));
+    // 1) 트랜잭션으로 묶어서 실행할 작업을 정의
+    // => 스프링 프레임워크에서 정한 규칙에 따라 정의해야 한다.
+    class ContactAddTransaction implements TransactionCallback {
+      @Override
+      public Object doInTransaction(TransactionStatus status) {
+        // 트랜잭션으로 묶어서 할 작업을 기술한다.
+        contactDao.insert(contact);
+        for (int i = 0; i < tel.length; i++) {
+          String[] value = tel[i].split("_");
+          if (value[1].length() == 0) {
+            continue;
           }
-          return 1;
+          contactDao.insertTel(new ContactTel(contact.getNo(), Integer.parseInt(value[0]), value[1]));
         }
+        return 1;
       }
+    }
 
-      // 2) 트랜잭션 작업을 수행한다.
-      return transactionTemplate.execute(new ContactAddTransaction());
+    // 2) 트랜잭션 작업을 수행한다.
+    return transactionTemplate.execute(new ContactAddTransaction());
      */
   }
 
@@ -83,7 +80,7 @@ public class ContactController {
         continue;
       }
       // 연락처 변경의 경우 이미 연락처 번호를 알기 때문에 
-      // 전화번호를 객체에 담을 때 연락처 번호도 함께 저장한다.
+      // 전화번호를 객체에 담을 때 연락처 번호도 함께 저장한다. 
       ContactTel contactTel = new ContactTel(contact.getNo(), Integer.parseInt(value[0]), value[1]);
       telList.add(contactTel);
     }
