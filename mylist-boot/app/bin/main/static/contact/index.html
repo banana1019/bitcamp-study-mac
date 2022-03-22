@@ -46,13 +46,14 @@
       return response.json();
     })
     .then(function(contacts) {
+    	var tbodyContent = "";
       for (var contact of contacts) {
-    	  console.log(contact);
-    	  // 템플릿 엔진에 값이 들어있는 객체를 줘서 텍스트를 생성한다.
+    	  // 값이 들어있는 객체를 가지고 템플릿 엔진을 실행하여 HTML을 생성한다.
     	  var str = htmlGenerator(contact);
-    	  console.log(str);
-        //tbody.appendChild(tr);
+        
+    	  tbodyContent += str;
       }
+      console.log(tbodyContent)
     });
   
 </script>
