@@ -66,7 +66,28 @@ public class FormController {
     System.out.println(name);
     System.out.println(age);
 
-    Thread.sleep(10000);
+    // Thread.sleep(10000);
+
+    return "ok!";
+  }
+
+  @RequestMapping("/html/form/exam31")
+  public Object exam31(String name, int age, MultipartFile photo) {
+    System.out.println(name);
+    System.out.println(age);
+
+    if (photo != null && photo.getSize() > 0) {      
+      System.out.println(photo.getOriginalFilename());
+
+
+      try {
+        File photoFile = new File("/Users/nana/upload/" + photo.getOriginalFilename());
+        photo.transferTo(photoFile);
+      } catch (Exception e) {
+        e.printStackTrace();
+        return "error!";
+      }
+    }
 
     return "ok!";
   }
