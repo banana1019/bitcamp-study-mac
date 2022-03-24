@@ -62,18 +62,12 @@ public class FormController {
   }
 
   @RequestMapping("/html/form/exam21")
-  public Object exam21(String name, int age) {
+  public Object exam21(String name, int age) throws Exception {
     System.out.println(name);
     System.out.println(age);
-    //    System.out.println(photo.getOriginalFilename());
-    //
-    //    try {
-    //      File photoFile = new File("/Users/nana/upload/" + photo.getOriginalFilename());
-    //      photo.transferTo(photoFile);
-    //    } catch (Exception e) {
-    //      e.printStackTrace();
-    //      return "error!";
-    //    }
+
+    Thread.sleep(10000);
+
     return "ok!";
   }
 
