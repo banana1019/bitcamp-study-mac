@@ -66,3 +66,7 @@ insert into ml_cont_tel(ct_no, contact_no, tt_no, tel)
   values(4, 2, 3, '02-1111-2222');
 insert into ml_cont_tel(ct_no, contact_no, tt_no, tel)
   values(5, 3, 3, '02-1111-3333');
+
+-- 도서록 테이블에 책 사진 파일 이름을 저장할 컬럼을 추가한다.
+alter table ml_book
+  add column photo varchar(255);
