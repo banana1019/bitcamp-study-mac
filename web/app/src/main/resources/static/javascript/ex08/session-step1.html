@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>세션다루기</title>
+</head>
+<body>
+<h1>1단계</h1>
+<form name="form1">
+이름: <input name="name"><br>
+<button id="btn1" type="button">다음</button><br>
+</form>
+
+<script>
+document.querySelector("#btn1").onclick = function() {
+	var fd = new FormData(document.forms.namedItem("form1"));
+	console.log(new URLSearchParams(fd));
+	
+	fetch("/session/step1", {
+		method: "POST",
+		body: new URLSearchParams(fd)
+	}).then(function(response){
+		// 응답 객체를 텍스트로 파싱해서 리턴한다.
+		return response.text();
+	}).then(function(text){
+		console.log(text);
+		location.href = "session-step2.html";
+	});
+	
+};
+</script>
+</body>
+</html>
