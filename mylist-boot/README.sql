@@ -82,3 +82,9 @@ create table ml_member (
 alter table ml_member
   add constraint primary key (no),
   modify column no int not null auto_increment;
+
+alter table ml_board
+  add column writer int not null,
+  add constraint ml_board_fk foreign key (writer) references ml_member(no);
+
+delete from ml_board;
