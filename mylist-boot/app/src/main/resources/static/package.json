@@ -2,7 +2,7 @@
   "name": "static",
   "version": "1.0.0",
   "description": "정적 웹 자원(HTML, CSS, JavaScript, Images 등)을 두는 폴더",
-  "main": "",
+  "main": " ",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

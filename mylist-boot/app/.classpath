@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
+	<classpathentry kind="output" path="bin/default"/>
 	<classpathentry output="bin/main" kind="src" path="src/main/java">
 		<attributes>
 			<attribute name="gradle_scope" value="main"/>
@@ -26,7 +27,6 @@
 			<attribute name="test" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="output" path="bin/default"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-11/"/>
 	<classpathentry sourcepath="/Users/nana/.gradle/caches/modules-2/files-2.1/net.coobird/thumbnailator/0.4.17/da8c663577c6798d852376edc59c9f7bf11da23a/thumbnailator-0.4.17-sources.jar" kind="lib" path="/Users/nana/.gradle/caches/modules-2/files-2.1/net.coobird/thumbnailator/0.4.17/4dbb7adfc9ac2346b8c40817130879ee87f20533/thumbnailator-0.4.17.jar">
 		<attributes>
