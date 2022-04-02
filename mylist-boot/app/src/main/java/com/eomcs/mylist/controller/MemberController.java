@@ -3,6 +3,8 @@ package com.eomcs.mylist.controller;
 import static com.eomcs.mylist.controller.ResultMap.FAIL;
 import static com.eomcs.mylist.controller.ResultMap.SUCCESS;
 import java.util.Map;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,7 +29,7 @@ public class MemberController {
   }
 
   @RequestMapping("/member/signin")
-  public Object signin(String email, String password, HttpSession session) {
+  public Object signin(String email, String password, boolean saveEmail, HttpServletResponse response, HttpSession session) {
     Member loginUser = memberService.get(email, password);
     if (loginUser == null) {
       return "fail";
@@ -36,6 +38,16 @@ public class MemberController {
     // 로그인이 성공하면, 
     // 다른 요청을 처리할 때 로그인 회원의 정보를 사용할 있도록 세션에 보관한다.
     session.setAttribute("loginUser", loginUser);
+
+    Cookie cookie = null;
+    if (saveEmail) {
+      // 이메일을 쿠키로 보낸다.
+      cookie = new Cookie("userEmail", email);
+    } else {
+      cookie = new Cookie("userEmail", "");
+      cookie.setMaxAge(0);
+    }
+    response.addCookie(cookie);
 
     return "success";
   }

@@ -11,6 +11,7 @@
 <form name="form1">
 이메일: <input name="email" type="email"><br>
 암호: <input name="password" type="password"><br>
+<input name="saveEmail" type="checkbox"> 이메일 저장<br>
 <div>
 	<button id="x-add-btn">로그인</button>
 	<button id="x-cancel-btn" type="button">취소</button>
@@ -103,6 +104,20 @@ function checkLoginState() {
     });
 }
 
+// userEmail 쿠키가 있다면 값을 꺼내서 이메일 입력 상자에 넣는다.
+
+//쿠키값 가져오기
+console.log(document.cookie);
+
+</script>
+
+<script src="/node_modules/js-cookie/dist/js.cookie.js"></script>
+<script>
+var userEmail = Cookies.get('userEmail');
+if (userEmail != undefined) {
+	console.log("실행했다!");
+  xEmail.value = userEmail;	
+}
 </script>
 
 </body>
