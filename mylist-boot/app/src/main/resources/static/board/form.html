@@ -2,7 +2,7 @@
 
 <form name="form1">
 제목*: <input type="text" name="title"><br>
-내용*: <textarea cols="60" rows="10" name="content"></textarea><br>
+내용*: <textarea cols="50" rows="10" name="content"></textarea><br>
 별표(*) 항목은 필수 입력입니다.<br>
 <button id="x-add-btn" type="button">등록</button>
 <button id="x-cancel-btn" type="button">취소</button>
@@ -27,10 +27,11 @@
         return response.json();
       })
       .then(function(result) {
+    	  console.log(result);
         if (result.status == "success") {
           location.href = "?content=/board/index.html";
         } else {
-          window.alert("게시글 등록 실패!");
+          window.alert(result.data);
           console.log(result.data);
         }
       });

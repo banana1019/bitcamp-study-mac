@@ -18,15 +18,13 @@ public class BoardController {
 
   @RequestMapping("/board/list")
   public Object list() {
-    return boardService.list();
+    return new ResultMap().setStatus(SUCCESS).setData(boardService.list());
   }
 
   @RequestMapping("/board/add")
   public Object add(Board board, HttpSession session) {
+    System.out.println("BoardController.add() 호출됨!");
     Member member = (Member) session.getAttribute("loginUser");
-    if (member == null) {
-      return new ResultMap().setStatus(FAIL).setData("로그인 하지 않았습니다.");
-    }
 
     board.setWriter(member);
     boardService.add(board);
@@ -38,17 +36,14 @@ public class BoardController {
   public Object get(int no) {
     Board board = boardService.get(no);
     if (board == null) {
-      return "";
+      return new ResultMap().setStatus(FAIL).setData("해당 번호의 게시글이 없습니다.");
     }
-    return board;
+    return new ResultMap().setStatus(SUCCESS).setData(board);
   }
 
   @RequestMapping("/board/update")
   public Object update(Board board, HttpSession session) {
     Member member = (Member) session.getAttribute("loginUser");
-    if (member == null) {
-      return new ResultMap().setStatus(FAIL).setData("로그인 하지 않았습니다.");
-    }
 
     board.setWriter(member);
     int count = boardService.update(board);
@@ -63,9 +58,6 @@ public class BoardController {
   @RequestMapping("/board/delete")
   public Object delete(int no, HttpSession session) {
     Member member = (Member) session.getAttribute("loginUser");
-    if (member == null) {
-      return new ResultMap().setStatus(FAIL).setData("로그인 하지 않았습니다.");
-    }
 
     Board board = new Board();
     board.setNo(no);
