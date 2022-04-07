@@ -3,6 +3,8 @@ package com.eomcs.mylist.controller;
 import static com.eomcs.mylist.controller.ResultMap.FAIL;
 import static com.eomcs.mylist.controller.ResultMap.SUCCESS;
 import javax.servlet.http.HttpSession;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,17 +15,24 @@ import com.eomcs.mylist.service.BoardService;
 @RestController 
 public class BoardController {
 
+  // log를 출력하는 도구 준비
+  private static final Logger log = LogManager.getLogger(BoardController.class);
+
   @Autowired
   BoardService boardService;
 
   @RequestMapping("/board/list")
   public Object list() {
+    log.info("게시물 목록 조회!");
     return new ResultMap().setStatus(SUCCESS).setData(boardService.list());
   }
 
   @RequestMapping("/board/add")
   public Object add(Board board, HttpSession session) {
-    System.out.println("BoardController.add() 호출됨!");
+    log.info("게시물 등록!"); // 운영자가 확인하기를 원하는 정보. 개발이 끝나고 여기까지만 출력
+    log.debug(board); // 개발자가 확인하기를 원하는 정보. 개발하는 동안
+
+    //    System.out.println("BoardController.add() 호출됨!");
     Member member = (Member) session.getAttribute("loginUser");
 
     board.setWriter(member);

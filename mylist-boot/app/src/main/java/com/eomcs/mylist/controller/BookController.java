@@ -2,7 +2,11 @@ package com.eomcs.mylist.controller;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.UUID;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
@@ -20,6 +24,8 @@ import net.coobird.thumbnailator.geometry.Positions;
 @RestController 
 public class BookController {
 
+  private static final Logger log = LogManager.getLogger(BookController.class);
+
   @Autowired
   BookService bookService;
 
@@ -35,7 +41,10 @@ public class BookController {
       return bookService.add(book);
 
     } catch (Exception e) {
-      e.printStackTrace();
+      StringWriter out = new StringWriter();
+      e.printStackTrace(new PrintWriter(out));
+      log.error(out.toString());
+
       return "error!";
     }
   }
