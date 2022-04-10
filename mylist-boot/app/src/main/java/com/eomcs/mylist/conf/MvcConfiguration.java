@@ -1,7 +1,7 @@
 package com.eomcs.mylist.conf;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -16,7 +16,7 @@ public class MvcConfiguration implements WebMvcConfigurer {
   // => 이 규칙에 따라 메서드를 작성하면 그 메서드가 의도한 대로
   // 스프링 부트는 해당 메서드를 호출하여 그 메서드가 요구하는 대로 설정한다.
 
-  private static final Logger log = LogManager.getLogger(WebMvcConfigurer.class);
+  private static final Logger log = LoggerFactory.getLogger(WebMvcConfigurer.class);
 
   // 인터셉터를 추가하고 싶다면 다음 메서드를 규칙에 따라 정의하라!
   @Override

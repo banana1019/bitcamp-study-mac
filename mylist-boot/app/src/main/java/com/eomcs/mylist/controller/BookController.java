@@ -5,8 +5,8 @@ import java.io.FileInputStream;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.util.UUID;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
@@ -24,7 +24,7 @@ import net.coobird.thumbnailator.geometry.Positions;
 @RestController 
 public class BookController {
 
-  private static final Logger log = LogManager.getLogger(BookController.class);
+  private static final Logger log = LoggerFactory.getLogger(BookController.class);
 
   @Autowired
   BookService bookService;
