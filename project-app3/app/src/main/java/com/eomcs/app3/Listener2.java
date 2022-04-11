@@ -6,8 +6,8 @@ import javax.servlet.annotation.WebListener;
 
 // 서블릿 컨테이너가 특정 상태에 놓일 때 수행할 작업이 있다면 리스너 클래스에 정의하라!
 //
-@WebListener // 
-public class Listener2 implements ServletContextListener { // 
+@WebListener // 서블릿 컨테이너에게 리스너 등록
+public class Listener2 implements ServletContextListener { // 서블릿 컨테이너가 시작, 종료할 때
 
   @Override
   public void contextInitialized(ServletContextEvent sce) {
