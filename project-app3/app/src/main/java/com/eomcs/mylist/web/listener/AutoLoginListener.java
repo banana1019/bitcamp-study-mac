@@ -7,12 +7,13 @@ import javax.servlet.http.HttpSessionListener;
 import com.eomcs.mylist.domain.Member;
 
 // 역할:
-// - HttpSeisson 객체를 생성할 때, 테스트를 위해 자동으로 로그인 시킨다.
-// 
+// - HttpSession 객체를 생성할 때, 기능 테스트를 위해 자동으로 로그인 시킨다.
+//
 @WebListener
 public class AutoLoginListener implements HttpSessionListener {
   @Override
-  public void sessionCreated(HttpSessionEvent se) { // 세션이 만들어질 때 호출된다.
+  public void sessionCreated(HttpSessionEvent se) {
+    System.out.println("AutoLoginListener.sessionCreated() 호출됨!");
     Member loginUser = new Member();
     loginUser.setNo(8);
     loginUser.setName("user8");

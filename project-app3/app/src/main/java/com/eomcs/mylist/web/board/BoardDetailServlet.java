@@ -106,8 +106,8 @@ public class BoardDetailServlet extends HttpServlet {
     out.printf("등록일: <span>%s</span><br>\n", board.getCreatedDate());
     out.println("별표(*) 항목은 필수 입력입니다.<br>");
     out.println("<button>변경</button>");
-    out.println("<button type=\"button\">삭제</button>");
-    out.println("<button type=\"button\">취소</button>");
+    out.println("<button id='delete-btn' type=\"button\">삭제</button>");
+    out.println("<button id='cancel-btn' type=\"button\">취소</button>");
     out.println("</form>");
     out.println("</div>");
 
@@ -130,7 +130,14 @@ public class BoardDetailServlet extends HttpServlet {
     out.println("</div>");
 
     out.println("</div>");
-
+    out.println("<script>");
+    out.println("document.querySelector('#delete-btn').onclick = () => {");
+    out.println("  location.href = 'delete?no=' + document.querySelector('input[name=no]').value;");
+    out.println("}");
+    out.println("document.querySelector('#cancel-btn').onclick = () => {");
+    out.println("  location.href = 'list';");
+    out.println("}");
+    out.println("</script>");
     out.println("</body>");
     out.println("</html>");
 
