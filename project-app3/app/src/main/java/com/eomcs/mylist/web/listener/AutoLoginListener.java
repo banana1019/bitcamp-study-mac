@@ -15,8 +15,8 @@ public class AutoLoginListener implements HttpSessionListener {
   public void sessionCreated(HttpSessionEvent se) {
     System.out.println("AutoLoginListener.sessionCreated() 호출됨!");
     Member loginUser = new Member();
-    loginUser.setNo(8);
-    loginUser.setName("user8");
+    loginUser.setNo(2);
+    loginUser.setName("user2");
 
     HttpSession session = se.getSession();
     session.setAttribute("loginUser", loginUser);

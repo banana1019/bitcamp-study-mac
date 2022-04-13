@@ -3,6 +3,7 @@ package com.eomcs.mylist.web.board;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -44,57 +45,17 @@ public class BoardListServlet extends HttpServlet {
     out.println("<div class=\"container\">");
 
     out.println("<div id=\"header\">");
-    out.println("<style>");
-
-    out.println("#login-btn {");
-    out.println("  position: absolute;");
-    out.println("  right: 10px;");
-    out.println("}");
-
-    out.println("#logout-btn {");
-    out.println("  position: absolute;");
-    out.println("  right: 10px;");
-    out.println("}");
-
-    out.println("#app-title {");
-    out.println("  font-size: 1.5em;");
-    out.println("  font-weight: bold;");
-    out.println("  font-style: none;");
-    out.println("  color: white;");
-    out.println("} ");
-
-    out.println("#user-name {");
-    out.println("  position: absolute;");
-    out.println("  right: 90px;");
-    out.println("}");
-    out.println("</style>");
-
-    out.println("<a href=\"/index.html\"><span id=\"app-title\">MyList</span></a> ");
-    out.println("<button id=\"login-btn\" type=\"button\" class=\"not-login\">로그인</button>");
-    out.println("<span id=\"user-name\" class=\"login\"></span>");
-    out.println("<button id=\"logout-btn\" type=\"button\" class=\"login\">로그아웃</button>  ");
+    RequestDispatcher 요청배달자 = req.getRequestDispatcher("/header");
+    요청배달자.include(req, resp);
     out.println("</div>");
 
     out.println("<div id=\"sidebar\">");
-    out.println("<style>");
-    out.println("h1.sidebar {");
-    out.println("  font-size: 1.2em;");
-    out.println("}");
-    out.println("</style>");
-
-    out.println("<h1 class=\"sidebar\">제목</h1>");
-    out.println("<div class=\"sidebar\">");
-    out.println("<ul>");
-    out.println("  <li>내용1</li>");
-    out.println("  <li>내용2</li>");
-    out.println("  <li>내용3</li>");
-    out.println("</ul>");
-    out.println("</div>  ");
+    req.getRequestDispatcher("/sidebar").include(req, resp);
     out.println("</div>");
 
     out.println("<div id=\"content\">");
     out.println("<h1>게시글</h1>");
-    out.println("<a href=\"?content=/board/form.html\">새 게시글</a>");
+    out.println("<a href=\"add\">새 게시글</a>");
     out.println("<table id=\"x-board-table\" border=\"1\">");
     out.println("<thead>");
     out.println("  <tr>");
@@ -123,21 +84,7 @@ public class BoardListServlet extends HttpServlet {
     out.println("</div>");
 
     out.println("<div id=\"footer\">");
-    out.println("<style>");
-    out.println("#company-title {");
-    out.println("  font-size: 1.2em;");
-    out.println("  font-weight: bold;");
-    out.println("}");
-
-    out.println("#company-address {");
-    out.println("  display: inline-block;");
-    out.println("  width: calc(100% - 100px); ");
-    out.println("  text-align: center; ");
-    out.println("}");
-    out.println("</style>");
-
-    out.println("<span id=\"company-title\">비트캠프</span> ");
-    out.println("<address id=\"company-address\">서울 강남구 강남대로94길 20, 삼오빌딩</address>  ");
+    req.getRequestDispatcher("/footer").include(req, resp);
     out.println("</div>");
 
     out.println("</div>");
