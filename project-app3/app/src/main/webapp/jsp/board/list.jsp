@@ -1,9 +1,7 @@
 <%@page import="com.eomcs.mylist.domain.Board"%>
 <%@page import="java.util.List"%>
-<%@page import="com.eomcs.mylist.service.BoardService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,12 +17,12 @@
 </div>
 
 <div id="sidebar">
-<jsp:include page="../sidebar.jsp"></jsp:include>
+<jsp:include page="/jsp/sidebar.jsp"></jsp:include>
 </div>
 
 <div id="content">
-<h1>게시글</h1>
-<a href="form.jsp">새 게시글</a>
+<h1>게시글6(+ JSP액션태그 + JSTL + EL)</h1>
+<a href="add">새 게시글</a>
 <table id="x-board-table" border="1">
 <thead>
   <tr>
@@ -36,71 +34,44 @@
   </tr>
 </thead>
 <tbody>
-<%
-BoardService boardService = (BoardService) application.getAttribute("boardService");
-
-int pageNo = 1;
-int pageSize = 5;
-int totalPageSize = 0;
-
-try { // pageNo 파라미터 값이 있다면 기본 값을 변경한다.
-  pageNo = Integer.parseInt(request.getParameter("pageNo"));
-} catch (Exception e) {}
-
-try { // pageSize 파라미터 값이 있다면 기본 값을 변경한다.
-  pageSize = Integer.parseInt(request.getParameter("pageSize"));
-  if (pageSize < 5 || pageSize > 100) {
-    pageSize = 5;
-  }
-} catch (Exception e) {}
-
-//게시글 전체 개수를 알아내서 페이지 개수를 계산한다.
-int boardSize = boardService.size();
-totalPageSize = boardSize / pageSize; // 예: 게시글개수 / 페이지당개수 = 16 / 5 = 3
-if ((boardSize % pageSize) > 0) {
-totalPageSize++;
-}
-
-// pageNo 유효성 검증
-try {
-  pageNo = Integer.parseInt(request.getParameter("pageNo"));
-  if (pageNo < 1 || pageNo > totalPageSize) {
-    pageNo = 1;
-  }
-} catch (Exception e) {}
-
-List<Board> boards = boardService.list(pageSize, pageNo);
-for (Board board : boards) {
-%>
+<c:forEach var="board" items="${list}">
   <tr>
-    <td><%=board.getNo()%></td>
-    <td><a href='view.jsp?no=<%=board.getNo()%>'><%=board.getTitle()%></a></td>
-    <td><%=board.getWriter().getName()%></td>
-    <td><%=board.getViewCount()%></td>
-    <td><%=board.getCreatedDate()%></td>
+    <td>${board.no}</td>
+    <td><a href='detail?no=${board.no}'>${board.title}</a></td>
+    <td>${board.writer.name}</td>
+    <td>${board.viewCount}</td>
+    <td>${board.createdDate}</td>
   </tr>
-<%
-}
-%>
+</c:forEach>
 </tbody>
 </table>
 <div>
-<%if (pageNo > 1) {%>
-<a href="list.jsp?pageNo=<%=pageNo - 1%>&pageSize=<%=pageSize%>">이전</a>
-<%} else {%>
-이전
-<%} %>
-<%=pageNo%>
-<%if (pageNo < totalPageSize) {%>
-<a href="list.jsp?pageNo=<%=pageNo + 1%>&pageSize=<%=pageSize%>">다음</a>
-<%} else {%>
-다음
-<%} %>
+
+<c:if test="${pageNo > 1}">
+  <a href="list?pageNo=${pageNo - 1}&pageSize=${pageSize}">[이전]</a>
+</c:if>
+<c:if test="${pageNo <= 1}">
+  [이전]
+</c:if>
+
+${pageNo}
+
+<c:choose>
+  <c:when test="${pageNo < totalPageSize}"> 
+    <a href="list?pageNo=${pageNo + 1}&pageSize=${pageSize}">[다음]</a>
+  </c:when>
+  <c:otherwise>
+    [다음]
+  </c:otherwise>
+</c:choose>
+
 </div>
 </div>
+
 <div id="footer">
-<jsp:include page="../footer.jsp"></jsp:include>
+<jsp:include page="/jsp/footer.jsp"></jsp:include>
 </div>
+
 </div>
 </body>
 </html>
